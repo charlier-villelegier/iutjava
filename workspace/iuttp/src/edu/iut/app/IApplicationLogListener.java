@@ -1,5 +1,6 @@
 package edu.iut.app;
 
 public interface IApplicationLogListener {
-	public void newMessage(String level, String message);
+	/** TP1 : Créer la fuonction newMessage */
+	void newMessage(String level, String message);
 }

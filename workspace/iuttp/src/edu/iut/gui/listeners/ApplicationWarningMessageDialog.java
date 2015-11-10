@@ -7,7 +7,7 @@ public class ApplicationWarningMessageDialog extends
 
 	@Override
 	protected void showMessage(String level, String message) {
-		JOptionPane.showMessageDialog(null, message, level, JOptionPane.WARNING_MESSAGE, null);
+		JOptionPane.showMessageDialog(null, message, level, JOptionPane.WARNING_MESSAGE);
 	}
 
 }

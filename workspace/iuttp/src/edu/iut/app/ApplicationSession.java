@@ -5,6 +5,8 @@ import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import javax.swing.JFrame;
+
 public class ApplicationSession {
 	
 	// Exercice 1 : Gérer l'internationation
@@ -47,12 +49,18 @@ public class ApplicationSession {
 	public void setLocale(Locale locale){
 		this.locale = locale;
 		Locale.setDefault(this.locale);
-		resourceBundle = ResourceBundle.getBundle("edu.iut.resources.strings.res", locale);
+		resourceBundle = ResourceBundle.getBundle("edu.iut.resources.strings.res");
 	}
 	
 	public String getString(String key) {
 		return resourceBundle.getString(key);
 	}
+
+	public Locale getLocale() {
+		return locale;
+	}
+	
+	
 	
 	
 }

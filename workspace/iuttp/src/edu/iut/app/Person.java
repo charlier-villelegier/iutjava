@@ -4,9 +4,9 @@ public class Person {
 	
 	public enum PersonFunction{
 		/* EX2 : Internationalisation */
-		NONE("None"),
-		JURY("Jury"),
-		STUDENT("Student");
+		NONE(ApplicationSession.instance().resourceBundle.getString("none")),
+		JURY(ApplicationSession.instance().resourceBundle.getString("jury")),
+		STUDENT(ApplicationSession.instance().resourceBundle.getString("student"));
 		
 		private String personFunction;
 		

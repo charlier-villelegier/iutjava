@@ -3,6 +3,8 @@ package edu.iut.app;
 import java.util.ArrayList;
 import java.util.Date;
 
+import edu.iut.app.Person.PersonFunction;
+
 public class ExamEvent {
 	public ExamEvent() {		
 	}
@@ -22,5 +24,31 @@ public class ExamEvent {
 	protected ArrayList<Person> jury;
 	protected Classroom classroom;
 	protected ArrayList<Document> documents;
+	
+	//Accesseurs
+	public Date getExamDate() {
+		return examDate;
+	}
+
+	public Person getStudent() {
+		return student;
+	}
+
+	public ArrayList<Person> getJury() {
+		return jury;
+	}
+
+	public Classroom getClassroom() {
+		return classroom;
+	}
+
+	public ArrayList<Document> getDocuments() {
+		return documents;
+	}
+
+	
+	
+	
+	
 	 
 }

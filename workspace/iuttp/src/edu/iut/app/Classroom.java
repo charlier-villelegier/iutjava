@@ -3,7 +3,7 @@ package edu.iut.app;
 public class Classroom {
 	
 	public Classroom() {
-		classRoomNumber="not affected";
+	classRoomNumber=ApplicationSession.instance().resourceBundle.getString("notaffected");
 	}
 	public Classroom(String classRoomNumber) {
 		/* EX2: AFFECTATION */;

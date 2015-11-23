@@ -14,6 +14,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSplitPane;
 
+import edu.iut.app.ApplicationSession;
 import edu.iut.gui.widget.agenda.AgendaPanelFactory;
 import edu.iut.gui.widget.agenda.ControlAgendaViewPanel;
 import edu.iut.gui.widget.agenda.AgendaPanelFactory.ActiveView;
@@ -41,6 +42,14 @@ public class SchedulerFrame extends JFrame {
 		contentPane.add(dayView,ActiveView.DAY_VIEW.name());
 		contentPane.add(weekView,ActiveView.WEEK_VIEW.name());
 		contentPane.add(monthView,ActiveView.MONTH_VIEW.name());
+		
+		ActionListener notImplemented = new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				JOptionPane.showMessageDialog(null,ApplicationSession.instance().getString("notimplemented"));				
+			}			
+		};
 	
 		JSplitPane splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,agendaViewPanel, contentPane);
 		this.setContentPane(splitPane);
@@ -48,12 +57,73 @@ public class SchedulerFrame extends JFrame {
 		JMenuBar menuBar = new JMenuBar();
 		JMenu menu;		
 		JMenuItem menuItem;
+		JMenu sousMenuItem;
 		
 		/* File Menu */
-		/** EX4 : MENU : UTILISER L'AIDE FOURNIE DANS LE TP**/
+		menu = new JMenu(ApplicationSession.instance().getString("file"));
 		
+		menuItem=new JMenuItem(ApplicationSession.instance().getString("load"));
+		menuItem.addActionListener(notImplemented);
+		menu.add(menuItem);
+		menuItem=new JMenuItem(ApplicationSession.instance().getString("save"));
+		menuItem.addActionListener(notImplemented);
+		menu.add(menuItem);
+		menuItem=new JMenuItem(ApplicationSession.instance().getString("quit"));
+		menuItem.addActionListener(notImplemented);
+		menu.add(menuItem);
 		
-		menu = new JMenu("File");
+		menuBar.add(menu);
+		
+		/* Edit Menu */
+		menu = new JMenu(ApplicationSession.instance().getString("edit"));
+		
+		sousMenuItem=new JMenu(ApplicationSession.instance().getString("view"));
+		
+		menuItem=new JMenuItem(ApplicationSession.instance().getString("month"));
+		menuItem.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				layerLayout.show(contentPane,ActiveView.MONTH_VIEW.name());				
+			}			
+		});
+		sousMenuItem.add(menuItem);
+		
+		menuItem=new JMenuItem(ApplicationSession.instance().getString("week"));
+		menuItem.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				layerLayout.show(contentPane,ActiveView.WEEK_VIEW.name());				
+			}			
+		});
+		sousMenuItem.add(menuItem);
+		
+		menuItem=new JMenuItem(ApplicationSession.instance().getString("day"));
+		menuItem.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				layerLayout.show(contentPane,ActiveView.DAY_VIEW.name());				
+			}			
+		});
+		sousMenuItem.add(menuItem);
+		
+		menu.add(sousMenuItem);
+		
+		menuBar.add(menu);
+		
+		/* Help Menu */
+		menu = new JMenu(ApplicationSession.instance().getString("help"));
+		
+		menuItem=new JMenuItem(ApplicationSession.instance().getString("display"));
+		menuItem.addActionListener(notImplemented);
+		menu.add(menuItem);
+		menuItem=new JMenuItem(ApplicationSession.instance().getString("about"));
+		menuItem.addActionListener(notImplemented);
+		menu.add(menuItem);
+		
+		menuBar.add(menu);
 		
 		
 		this.setJMenuBar(menuBar);

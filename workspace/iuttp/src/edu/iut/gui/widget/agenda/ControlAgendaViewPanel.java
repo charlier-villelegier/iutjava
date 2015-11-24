@@ -5,8 +5,11 @@ import java.awt.CardLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 
 import javax.swing.BoxLayout;
 import javax.swing.JComboBox;
@@ -14,8 +17,11 @@ import javax.swing.JSpinner;
 import javax.swing.JPanel;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.SpinnerModel;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 import edu.iut.app.ApplicationSession;
+import edu.iut.gui.widget.agenda.AgendaPanelFactory.ActiveView;
 
 public class ControlAgendaViewPanel extends JPanel {
 
@@ -32,15 +38,54 @@ public class ControlAgendaViewPanel extends JPanel {
 		this.contentPane = contentPane;
 		
 		/** EX3: REMPLACEMENT DU BOUTON NEXT */
-		Calendar c = Calendar.getInstance();
+		final Calendar c = Calendar.getInstance();
+		Calendar actualCalendar = Calendar.getInstance();
+		c.setFirstDayOfWeek(c.MONDAY);
+		
 		int actualYear = c.get(c.YEAR);
 		JPanel panelDate = new JPanel(new GridLayout(3,1));
 		
-		
+		final JComboBox day = new JComboBox();
+		final JComboBox month = new JComboBox(ApplicationSession.instance().getMonths());
 		SpinnerModel yearModel = new SpinnerNumberModel(actualYear, actualYear-5, actualYear+5, 1);
-		JSpinner year = new JSpinner(yearModel);
-		JComboBox month = new JComboBox(ApplicationSession.instance().getMonths());
-		JComboBox day = new JComboBox(ApplicationSession.instance().getDays());
+		final JSpinner year = new JSpinner(yearModel);
+		year.addChangeListener((new ChangeListener() {
+
+			@Override
+			public void stateChanged(ChangeEvent e){
+				day.removeAllItems();
+				c.set((Integer)year.getValue(), month.getSelectedIndex(), 1, 0, 0, 0);
+				int firstDay=c.get(c.DAY_OF_WEEK);
+				for(int i=0; i<c.getActualMaximum(c.DAY_OF_MONTH);i++){
+					day.addItem((ApplicationSession.instance().getDays()[(firstDay+i+5)%7])+" "+String.valueOf(i+1) + " " + ApplicationSession.instance().getMonths()[month.getSelectedIndex()]);;
+				}
+			}			
+		}));
+		
+		
+		month.setSelectedIndex(c.get(c.MONTH));
+		month.addItemListener((new ItemListener() {
+
+			@Override
+			public void itemStateChanged(ItemEvent e){
+				day.removeAllItems();
+				c.set((Integer)year.getValue(), month.getSelectedIndex(), 1, 0, 0, 0);
+				int firstDay=c.get(c.DAY_OF_WEEK);
+				for(int i=0; i<c.getActualMaximum(c.DAY_OF_MONTH);i++){
+					day.addItem((ApplicationSession.instance().getDays()[(firstDay+i+5)%7])+" "+String.valueOf(i+1) + " " + ApplicationSession.instance().getMonths()[month.getSelectedIndex()]);;
+				}
+			}			
+		}));
+		
+		
+		
+		c.set(c.get(c.YEAR), c.get(c.MONTH), 1, 0, 0, 0);
+		int firstDay=c.get(c.DAY_OF_WEEK);
+		for(int i=0; i<c.getActualMaximum(c.DAY_OF_MONTH);i++){
+			day.addItem((ApplicationSession.instance().getDays()[(firstDay+i+5)%7])+" "+String.valueOf(i+1) + " " + ApplicationSession.instance().getMonths()[month.getSelectedIndex()]);;
+		}
+		day.setSelectedIndex((actualCalendar.get(actualCalendar.DAY_OF_MONTH))-1);
+		
 		
 		panelDate.add(year);
 		panelDate.add(month);

@@ -85,6 +85,24 @@ public class ControlAgendaViewPanel extends JPanel {
 			day.addItem((ApplicationSession.instance().getDays()[(firstDay+i+5)%7])+" "+String.valueOf(i+1) + " " + ApplicationSession.instance().getMonths()[month.getSelectedIndex()]);;
 		}
 		day.setSelectedIndex((actualCalendar.get(actualCalendar.DAY_OF_MONTH))-1);
+		day.addItemListener((new ItemListener() {
+
+			@Override
+			public void itemStateChanged(ItemEvent e){
+				AgendaPanelFactory agendaPanelFactory = new AgendaPanelFactory();
+				
+				//Mise à jour de la date séléctionnée
+				Calendar cal=Calendar.getInstance();
+				cal.set(Calendar.YEAR, (Integer)year.getValue());
+				cal.set(Calendar.MONTH, month.getSelectedIndex());
+				cal.set(Calendar.DATE, day.getSelectedIndex());
+				ApplicationSession.instance().setDateSelected(cal);
+				
+				//Ajout d'une nouvelle vue WeekPanel, et séléction de celle ci dans le CardLayout
+				contentPane.add(agendaPanelFactory.getAgendaView(ActiveView.WEEK_VIEW),ActiveView.WEEK_VIEW.name());
+				agendaViewLayout.show(contentPane, ActiveView.WEEK_VIEW.name());
+			}			
+		}));
 		
 		
 		panelDate.add(year);

@@ -1,5 +1,6 @@
 package edu.iut.app;
 
+import java.util.Calendar;
 import java.util.ResourceBundle;
 import java.util.Locale;
 import java.util.logging.Level;
@@ -13,6 +14,7 @@ public class ApplicationSession {
 	protected Logger sessionExceptionLogger;
 	protected String[] months;
 	protected String[] days;
+	protected Calendar dateSelected;
 
 
 	private static ApplicationSession session = null;
@@ -35,6 +37,8 @@ public class ApplicationSession {
 		months[6] = getString("july"); months[7] =  getString("august"); months[8] =  getString("september");
 		months[9] = getString("october"); months[10] =  getString("november"); months[11] =  getString("december");
 		
+		dateSelected = Calendar.getInstance();
+		System.out.println(dateSelected.get(Calendar.DAY_OF_MONTH));
 		
 	}
 	
@@ -69,6 +73,17 @@ public class ApplicationSession {
 	public String[] getMonths() {
 		return months;
 	}
+
+
+	public Calendar getDateSelected() {
+		return dateSelected;
+	}
+
+
+	public void setDateSelected(Calendar dateSelected) {
+		this.dateSelected = dateSelected;
+	}
+	
 	
 	
 }

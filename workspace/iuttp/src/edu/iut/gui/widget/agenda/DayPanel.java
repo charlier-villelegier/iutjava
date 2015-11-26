@@ -2,10 +2,12 @@ package edu.iut.gui.widget.agenda;
 
 import java.awt.GridLayout;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import edu.iut.app.ApplicationSession;
 import edu.iut.gui.widget.agenda.AgendaPanelFactory.ActiveView;
 import edu.iut.gui.widget.agenda.WeekPanel.WeekDayNames;
 
@@ -25,7 +27,8 @@ public class DayPanel extends EventPanel {
 			default:
 				daysLayout = new GridLayout(25,1);
 				this.setLayout(daysLayout);
-				this.add(new JLabel(weekDayNames.toString()));
+				this.add(new JLabel(weekDayNames.toString() + " " + ApplicationSession.instance().getDateSelected().get(Calendar.DAY_OF_MONTH)));
+				ApplicationSession.instance().getDateSelected().add(Calendar.DAY_OF_MONTH, 1);
 			}
 						
 			for (int hi = 0;hi<24;hi++) {

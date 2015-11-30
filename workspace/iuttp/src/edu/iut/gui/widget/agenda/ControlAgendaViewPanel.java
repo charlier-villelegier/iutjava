@@ -2,6 +2,7 @@ package edu.iut.gui.widget.agenda;
 
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
+import java.awt.Component;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -22,6 +23,7 @@ import javax.swing.event.ChangeListener;
 
 import edu.iut.app.ApplicationSession;
 import edu.iut.gui.widget.agenda.AgendaPanelFactory.ActiveView;
+import edu.iut.gui.widget.agenda.WeekPanel.WeekDayNames;
 
 public class ControlAgendaViewPanel extends JPanel {
 
@@ -32,7 +34,7 @@ public class ControlAgendaViewPanel extends JPanel {
 	int selectedMonth;
 	int selectedDay;
 	
-	public ControlAgendaViewPanel(CardLayout layerLayout, final JPanel contentPane) {
+	public ControlAgendaViewPanel(final CardLayout layerLayout, final JPanel contentPane) {
 
 		this.agendaViewLayout = layerLayout;
 		this.contentPane = contentPane;
@@ -95,12 +97,28 @@ public class ControlAgendaViewPanel extends JPanel {
 				Calendar cal=Calendar.getInstance();
 				cal.set(Calendar.YEAR, (Integer)year.getValue());
 				cal.set(Calendar.MONTH, month.getSelectedIndex());
-				cal.set(Calendar.DATE, day.getSelectedIndex());
+				cal.set(Calendar.DATE, day.getSelectedIndex()+1);
+				//On définit l'heure
+				cal.set(Calendar.MINUTE,0);
+				cal.set(Calendar.SECOND,0);
+				cal.set(Calendar.MILLISECOND,0);
+				//On définit la date séléctionnée
 				ApplicationSession.instance().setDateSelected(cal);
 				
-				//Ajout d'une nouvelle vue WeekPanel, et séléction de celle ci dans le CardLayout
+				
+				
+				//On créer les trois nouvelles vues Week, Month et Day
+				contentPane.add(agendaPanelFactory.getAgendaView(ActiveView.DAY_VIEW),ActiveView.DAY_VIEW.name());
+				ApplicationSession.instance().setDateSelected(cal);
 				contentPane.add(agendaPanelFactory.getAgendaView(ActiveView.WEEK_VIEW),ActiveView.WEEK_VIEW.name());
-				agendaViewLayout.show(contentPane, ActiveView.WEEK_VIEW.name());
+				ApplicationSession.instance().setDateSelected(cal);
+				contentPane.add(agendaPanelFactory.getAgendaView(ActiveView.MONTH_VIEW),ActiveView.MONTH_VIEW.name());
+				ApplicationSession.instance().setDateSelected(cal);
+				
+				//On réaffiche la bonne vue
+				
+				layerLayout.show(contentPane,ActiveView.WEEK_VIEW.name());
+				
 			}			
 		}));
 		

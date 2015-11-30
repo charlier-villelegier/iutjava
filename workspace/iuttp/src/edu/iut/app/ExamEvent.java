@@ -46,6 +46,26 @@ public class ExamEvent {
 		return documents;
 	}
 
+	public void setExamDate(Date examDate) {
+		this.examDate = examDate;
+	}
+
+	public void setStudent(Person student) {
+		this.student = student;
+	}
+
+	public void setJury(ArrayList<Person> jury) {
+		this.jury = jury;
+	}
+
+	public void setClassroom(Classroom classroom) {
+		this.classroom = classroom;
+	}
+
+	public void setDocuments(ArrayList<Document> documents) {
+		this.documents = documents;
+	}
+
 	
 	
 	

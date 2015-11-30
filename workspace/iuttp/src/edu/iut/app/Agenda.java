@@ -1,6 +1,5 @@
 package edu.iut.app;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.LinkedList;
 
@@ -13,6 +12,7 @@ public class Agenda extends LinkedList<ExamEvent> implements ICriteriaPerson, IC
 	public void addCheckedEvent(ExamEvent examEvent) {
 		this.add(examEvent);
 	}
+	
 	
 /**Critères implémentés**/
 	

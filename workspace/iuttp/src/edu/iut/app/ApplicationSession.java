@@ -1,10 +1,16 @@
 package edu.iut.app;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.ResourceBundle;
 import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import javax.swing.JFrame;
+
+import edu.iut.app.Person.PersonFunction;
+
 
 public class ApplicationSession {
 	
@@ -15,7 +21,9 @@ public class ApplicationSession {
 	protected String[] months;
 	protected String[] days;
 	protected Calendar dateSelected;
-
+	protected Agenda agenda;
+	protected ArrayList<Person> students;
+	protected JFrame myFrame;
 
 	private static ApplicationSession session = null;
 	private ApplicationSession() {
@@ -38,7 +46,13 @@ public class ApplicationSession {
 		months[9] = getString("october"); months[10] =  getString("november"); months[11] =  getString("december");
 		
 		dateSelected = Calendar.getInstance();
-		System.out.println(dateSelected.get(Calendar.DAY_OF_MONTH));
+		dateSelected.set(Calendar.MINUTE,0);
+		dateSelected.set(Calendar.SECOND,0);
+		dateSelected.set(Calendar.MILLISECOND,0);
+		
+		agenda = new Agenda();
+		students = new ArrayList<Person>();
+		students.add(new Person(PersonFunction.STUDENT,"Léo","Charlier","leo.charlier@u-psud.fr","0611223344"));
 		
 	}
 	
@@ -83,6 +97,27 @@ public class ApplicationSession {
 	public void setDateSelected(Calendar dateSelected) {
 		this.dateSelected = dateSelected;
 	}
+
+
+	public JFrame getMyFrame() {
+		return myFrame;
+	}
+
+
+	public void setMyFrame(JFrame myFrame) {
+		this.myFrame = myFrame;
+	}
+
+
+	public Agenda getAgenda() {
+		return agenda;
+	}
+
+
+	public ArrayList<Person> getStudents() {
+		return students;
+	}
+	
 	
 	
 	

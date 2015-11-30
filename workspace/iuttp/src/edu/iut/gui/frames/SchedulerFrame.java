@@ -84,7 +84,7 @@ public class SchedulerFrame extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				layerLayout.show(contentPane,ActiveView.MONTH_VIEW.name());				
+				layerLayout.show(contentPane,ActiveView.MONTH_VIEW.name());			
 			}			
 		});
 		sousMenuItem.add(menuItem);
@@ -94,7 +94,7 @@ public class SchedulerFrame extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				layerLayout.show(contentPane,ActiveView.WEEK_VIEW.name());				
+				layerLayout.show(contentPane,ActiveView.WEEK_VIEW.name());
 			}			
 		});
 		sousMenuItem.add(menuItem);
@@ -104,7 +104,7 @@ public class SchedulerFrame extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				layerLayout.show(contentPane,ActiveView.DAY_VIEW.name());				
+				layerLayout.show(contentPane,ActiveView.DAY_VIEW.name());
 			}			
 		});
 		sousMenuItem.add(menuItem);
@@ -128,7 +128,6 @@ public class SchedulerFrame extends JFrame {
 		
 		this.setJMenuBar(menuBar);
 		this.pack();
-		layerLayout.next(contentPane);
 	}
 	
 	public SchedulerFrame() {

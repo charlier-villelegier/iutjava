@@ -1,12 +1,9 @@
 package edu.iut.gui.widget.agenda;
 
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
 
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import edu.iut.app.ApplicationSession;
 import edu.iut.gui.widget.agenda.WeekPanel.WeekDayNames;
 
 public class AgendaPanelFactory {
@@ -24,11 +21,13 @@ public class AgendaPanelFactory {
 		
 		public String toString() {
 			return activeView;
-		}		
+		}
+	
 	}
 	
 	public AgendaPanelFactory() {
 	}
+	
 	
 	public JPanel getAgendaView(ActiveView activeView) {
 		JPanel agendaView = null;
@@ -51,4 +50,5 @@ public class AgendaPanelFactory {
 		return agendaView;
 	}
 
+	
 }

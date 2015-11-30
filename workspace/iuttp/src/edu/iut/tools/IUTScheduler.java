@@ -2,8 +2,10 @@ package edu.iut.tools;
 
 import java.util.Locale;
 
+import edu.iut.app.ApplicationSession;
 import edu.iut.app.CommandLineOption;
 import edu.iut.app.CommandLineParser;
+
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 
@@ -19,6 +21,7 @@ public class IUTScheduler {
 		SwingUtilities.invokeLater(new Runnable() {
 		    public void run() {
 		        JFrame mainFrame = new edu.iut.gui.frames.SchedulerFrame("IUT Scheduler");
+		        ApplicationSession.instance().setMyFrame(mainFrame);
 		        mainFrame.setVisible(true);		        
 		    }
 		});

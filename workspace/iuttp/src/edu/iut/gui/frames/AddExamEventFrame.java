@@ -6,6 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.LinkedList;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -38,10 +39,18 @@ public class AddExamEventFrame extends JDialog{
 	}
 	
 	public void setupUI(){
+		final ExamEvent exam;
+		final LinkedList<ExamEvent> existingExam = ApplicationSession.instance().getAgenda().meetCriteriaDateEqual(dateExam);
+		if(existingExam.isEmpty()){
+			exam = new ExamEvent(this.dateExam,null,null,null,null);
+		}
+		else{
+			exam = existingExam.getFirst();
+			
+		}
 		
-		final ExamEvent exam = new ExamEvent(this.dateExam,null,null,null,null);
 		
-		//Initialisation de la date avce l'internationnalisation
+		//Initialisation de la date avec l'internationnalisation
 		JLabel date = new JLabel();
 		Calendar c = Calendar.getInstance();
 		c.setTime(this.dateExam);
@@ -62,7 +71,13 @@ public class AddExamEventFrame extends JDialog{
 		centre.add(date);
 		
 		centre.add(new JLabel("Etudiant : "));
-		final JButton chooseStudent = new JButton("Choisissez un étudiant");
+		final JButton chooseStudent;
+		if(exam.getStudent()==(null)){
+			 chooseStudent = new JButton("Choisissez un étudiant");
+		}
+		else{
+			chooseStudent = new JButton(exam.getStudent().toString());
+		}
 		chooseStudent.addActionListener(new ActionListener() {
 
 			@Override
@@ -73,7 +88,21 @@ public class AddExamEventFrame extends JDialog{
 		centre.add(chooseStudent);
 		
 		centre.add(new JLabel("Jury : "));
-		centre.add(new JButton("Choisissez les membres"));
+		final JButton chooseJury;
+		if(exam.getJury()==(null)){
+			 chooseJury = new JButton("Choisissez les membres");
+		}
+		else{
+			chooseJury = new JButton(exam.getJury().size() + " membre(s)");
+		}
+		chooseJury.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				JuryChoiceDialog dialog = new JuryChoiceDialog(AddExamEventFrame.this,chooseJury,exam);		
+			}			
+		});
+		centre.add(chooseJury);
 		
 		centre.add(new JLabel("Salle : "));
 		centre.add(new JComboBox());
@@ -85,12 +114,14 @@ public class AddExamEventFrame extends JDialog{
 		
 		JPanel sud = new JPanel(new GridLayout(1,1));
 		
-		JButton ajouter = new JButton("Ajouter");
+		JButton ajouter = new JButton("Enregistrer");
 		ajouter.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
+				if(!existingExam.isEmpty())ApplicationSession.instance().getAgenda().remove(exam);
 				ApplicationSession.instance().getAgenda().add(exam);
+				ApplicationSession.instance().getMyFrame().majView();
 				CloseDialog();
 			}			
 		});

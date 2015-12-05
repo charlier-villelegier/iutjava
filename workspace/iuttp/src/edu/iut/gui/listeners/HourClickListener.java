@@ -1,5 +1,7 @@
 package edu.iut.gui.listeners;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.Date;
@@ -14,6 +16,7 @@ import javax.swing.SwingUtilities;
 import edu.iut.app.ApplicationSession;
 import edu.iut.app.ExamEvent;
 import edu.iut.gui.frames.AddExamEventFrame;
+import edu.iut.gui.widget.agenda.AgendaPanelFactory.ActiveView;
 
 public class HourClickListener implements MouseListener{
 
@@ -27,11 +30,33 @@ public class HourClickListener implements MouseListener{
 	
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		LinkedList<ExamEvent> examDate = ApplicationSession.instance().getAgenda().meetCriteriaDateEqual(this.date);
+		final LinkedList<ExamEvent> examDate = ApplicationSession.instance().getAgenda().meetCriteriaDateEqual(this.date);
 		if(!examDate.isEmpty()){
 			JPopupMenu menu = new JPopupMenu();
+			
+			
 			JMenuItem modif = new JMenuItem("Modifier");
+			modif.addActionListener(new ActionListener() {
+
+				@Override
+				public void actionPerformed(ActionEvent arg0) {
+					AddExamEventFrame dialog = new AddExamEventFrame(HourClickListener.this.date);
+				}			
+			});
+			
+			
 			JMenuItem delete = new JMenuItem("Supprimer");
+			delete.addActionListener(new ActionListener() {
+
+				@Override
+				public void actionPerformed(ActionEvent arg0) {
+					if(JOptionPane.showConfirmDialog (container, "Voulez vous vraiment supprimer ?","Confirmation",JOptionPane.YES_NO_OPTION)==JOptionPane.YES_NO_OPTION){
+						ApplicationSession.instance().getAgenda().remove(examDate.getFirst());
+						ApplicationSession.instance().getMyFrame().majView();
+					}
+					
+				}			
+			});
 			
 			menu.add(modif);
 			menu.add(delete);

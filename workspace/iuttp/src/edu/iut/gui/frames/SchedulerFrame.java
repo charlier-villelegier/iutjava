@@ -84,7 +84,8 @@ public class SchedulerFrame extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				layerLayout.show(contentPane,ActiveView.MONTH_VIEW.name());			
+				layerLayout.show(contentPane,ActiveView.MONTH_VIEW.name());		
+				ApplicationSession.instance().setActualView(ActiveView.MONTH_VIEW);
 			}			
 		});
 		sousMenuItem.add(menuItem);
@@ -95,6 +96,7 @@ public class SchedulerFrame extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				layerLayout.show(contentPane,ActiveView.WEEK_VIEW.name());
+				ApplicationSession.instance().setActualView(ActiveView.WEEK_VIEW);
 			}			
 		});
 		sousMenuItem.add(menuItem);
@@ -105,6 +107,7 @@ public class SchedulerFrame extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				layerLayout.show(contentPane,ActiveView.DAY_VIEW.name());
+				ApplicationSession.instance().setActualView(ActiveView.DAY_VIEW);
 			}			
 		});
 		sousMenuItem.add(menuItem);
@@ -154,6 +157,14 @@ public class SchedulerFrame extends JFrame {
 			}
 		});
 		setupUI();
+	}
+	
+	public void majView(){
+		ActiveView actualView = ApplicationSession.instance().getActualView();
+		contentPane.add(agendaPanelFactory.getAgendaView(ActiveView.DAY_VIEW),ActiveView.DAY_VIEW.name());
+		contentPane.add(agendaPanelFactory.getAgendaView(ActiveView.WEEK_VIEW),ActiveView.WEEK_VIEW.name());
+		contentPane.add(agendaPanelFactory.getAgendaView(ActiveView.MONTH_VIEW),ActiveView.MONTH_VIEW.name());
+		layerLayout.show(contentPane,actualView.name());
 	}
 	
 }

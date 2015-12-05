@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
+import java.util.LinkedList;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
@@ -16,6 +17,7 @@ import javax.swing.JPanel;
 import edu.iut.app.ApplicationSession;
 import edu.iut.app.ExamEvent;
 import edu.iut.app.Person;
+import edu.iut.app.Person.PersonFunction;
 import edu.iut.gui.widget.agenda.AgendaPanelFactory.ActiveView;
 
 public class StudentChoiceDialog extends JDialog{
@@ -43,9 +45,13 @@ public class StudentChoiceDialog extends JDialog{
 	
 		final DefaultListModel<String> name = new DefaultListModel<>();
 		
-		for (Person stud : ApplicationSession.instance().getStudents())
-		    name.addElement(stud.toString());
-	
+		for (Person stud : ApplicationSession.instance().getAgenda().getStudents()){
+		    if(ApplicationSession.instance().getAgenda().meetCriteriaFirstName(PersonFunction.STUDENT, stud.getFirstname()).isEmpty()){
+		    	if(ApplicationSession.instance().getAgenda().meetCriteriaLastName(PersonFunction.STUDENT, stud.getLastname()).isEmpty()){
+		    		name.addElement(stud.toString());
+			    }
+		    }
+		}
 		final JList<String>students = new JList<String>(name);
 		students.addMouseListener(new MouseListener() {
 
@@ -53,7 +59,11 @@ public class StudentChoiceDialog extends JDialog{
 			public void mouseClicked(MouseEvent e) {
 				if(!students.isSelectionEmpty() && e.getClickCount()==2){
 					studentButton.setText(students.getSelectedValue());
-					exam.setStudent(ApplicationSession.instance().getStudents().get(students.getSelectedIndex()));
+					for (Person stud : ApplicationSession.instance().getAgenda().getStudents()){
+						if(stud.toString().equals(students.getSelectedValue())){
+							exam.setStudent(stud);
+						}
+					}
 					CloseDialog();
 				}
 				
@@ -93,7 +103,7 @@ public class StudentChoiceDialog extends JDialog{
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				AddStudentDialog dialog = new AddStudentDialog(StudentChoiceDialog.this,name);		
+				AddPersonDialog dialog = new AddPersonDialog(StudentChoiceDialog.this,name,PersonFunction.STUDENT);		
 			}			
 		});
 		panel.add(addStudent, BorderLayout.SOUTH);

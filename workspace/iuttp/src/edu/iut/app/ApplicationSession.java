@@ -10,6 +10,8 @@ import java.util.logging.Logger;
 import javax.swing.JFrame;
 
 import edu.iut.app.Person.PersonFunction;
+import edu.iut.gui.frames.SchedulerFrame;
+import edu.iut.gui.widget.agenda.AgendaPanelFactory.ActiveView;
 
 
 public class ApplicationSession {
@@ -22,8 +24,8 @@ public class ApplicationSession {
 	protected String[] days;
 	protected Calendar dateSelected;
 	protected Agenda agenda;
-	protected ArrayList<Person> students;
-	protected JFrame myFrame;
+	protected SchedulerFrame myFrame;
+	protected ActiveView actualView;
 
 	private static ApplicationSession session = null;
 	private ApplicationSession() {
@@ -51,9 +53,15 @@ public class ApplicationSession {
 		dateSelected.set(Calendar.MILLISECOND,0);
 		
 		agenda = new Agenda();
-		students = new ArrayList<Person>();
-		students.add(new Person(PersonFunction.STUDENT,"Léo","Charlier","leo.charlier@u-psud.fr","0611223344"));
 		
+		agenda.getStudents().add(new Person(PersonFunction.STUDENT,"Léo","Charlier","leo.charlier@u-psud.fr","0611223344"));
+		
+		
+		agenda.getJurys().add(new Person(PersonFunction.JURY,"Hélène","Maynard","helene.maynard@u-psud.fr","0611223344"));
+		agenda.getJurys().add(new Person(PersonFunction.JURY,"Julien","Tourille","julien.tourille@u-psud.fr","0611223344"));
+		
+		
+		actualView=ActiveView.DAY_VIEW;
 	}
 	
 	
@@ -99,12 +107,12 @@ public class ApplicationSession {
 	}
 
 
-	public JFrame getMyFrame() {
+	public SchedulerFrame getMyFrame() {
 		return myFrame;
 	}
 
 
-	public void setMyFrame(JFrame myFrame) {
+	public void setMyFrame(SchedulerFrame myFrame) {
 		this.myFrame = myFrame;
 	}
 
@@ -114,9 +122,15 @@ public class ApplicationSession {
 	}
 
 
-	public ArrayList<Person> getStudents() {
-		return students;
+	public ActiveView getActualView() {
+		return actualView;
 	}
+
+
+	public void setActualView(ActiveView actualView) {
+		this.actualView = actualView;
+	}
+
 	
 	
 	

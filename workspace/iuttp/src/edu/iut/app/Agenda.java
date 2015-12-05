@@ -1,12 +1,19 @@
 package edu.iut.app;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.LinkedList;
 
 import edu.iut.app.Person.PersonFunction;
 
 public class Agenda extends LinkedList<ExamEvent> implements ICriteriaPerson, ICriteriaDocument, ICriteriaDate {
+	
+	protected ArrayList<Person> students;
+	protected ArrayList<Person> jurys;
+	
 	public Agenda() {
+		students = new ArrayList<Person>();
+		jurys = new ArrayList<Person>();
 	}
 	
 	public void addCheckedEvent(ExamEvent examEvent) {
@@ -14,6 +21,17 @@ public class Agenda extends LinkedList<ExamEvent> implements ICriteriaPerson, IC
 	}
 	
 	
+	
+	
+	
+public ArrayList<Person> getStudents() {
+		return students;
+	}
+
+	public ArrayList<Person> getJurys() {
+		return jurys;
+	}
+
 /**Critères implémentés**/
 	
 	//Person

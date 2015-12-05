@@ -20,13 +20,15 @@ import edu.iut.app.Person;
 import edu.iut.app.Person.PersonFunction;
 import edu.iut.gui.widget.agenda.AgendaPanelFactory.ActiveView;
 
-public class AddStudentDialog extends JDialog{
+public class AddPersonDialog extends JDialog{
 	
-	DefaultListModel<String> students;
+	DefaultListModel<String> person;
+	PersonFunction function;
 	
-	public AddStudentDialog(JDialog container, DefaultListModel<String> students){
-		super(container,"Ajouter un étudiant",true);
-		this.students=students;
+	public AddPersonDialog(JDialog container, DefaultListModel<String> person, PersonFunction function){
+		super(container,"Ajouter une personne",true);
+		this.person=person;
+		this.function=function;
 		this.setupUI();
 		this.setSize(300, 150);
 		this.setLocationRelativeTo(container);
@@ -62,9 +64,16 @@ public class AddStudentDialog extends JDialog{
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				if(!(firstname.getText().equals("") || lastname.getText().equals("") || email.getText().equals("") || phone.getText().equals(""))){
-					Person newStudent = new Person(PersonFunction.STUDENT,firstname.getText(),lastname.getText(),email.getText(),phone.getText());
-					ApplicationSession.instance().getStudents().add(newStudent);	
-					students.addElement(newStudent.toString());
+					Person newPerson = new Person(function,firstname.getText(),lastname.getText(),email.getText(),phone.getText());
+					
+					if(function==PersonFunction.STUDENT){
+						ApplicationSession.instance().getAgenda().getStudents().add(newPerson);
+					}
+					else if(function==PersonFunction.JURY){
+						ApplicationSession.instance().getAgenda().getJurys().add(newPerson);
+					}
+						
+					person.addElement(newPerson.toString());
 					
 					CloseDialog();
 				}

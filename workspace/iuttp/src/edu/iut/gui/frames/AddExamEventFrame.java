@@ -13,6 +13,7 @@ import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import edu.iut.app.ApplicationSession;
@@ -49,6 +50,15 @@ public class AddExamEventFrame extends JDialog{
 			
 		}
 		
+		//Listener Not implemented
+		ActionListener notImplemented = new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				JOptionPane.showMessageDialog(null,ApplicationSession.instance().getString("notimplemented"));				
+			}			
+		};
+	
 		
 		//Initialisation de la date avec l'internationnalisation
 		JLabel date = new JLabel();
@@ -70,6 +80,7 @@ public class AddExamEventFrame extends JDialog{
 		centre.add(new JLabel(ApplicationSession.instance().getString("date")));
 		centre.add(date);
 		
+		//Choix de l'étudiant
 		centre.add(new JLabel(ApplicationSession.instance().getString("student")+" : "));
 		final JButton chooseStudent;
 		if(exam.getStudent()==(null)){
@@ -87,6 +98,7 @@ public class AddExamEventFrame extends JDialog{
 		});
 		centre.add(chooseStudent);
 		
+		//Choix du jury
 		centre.add(new JLabel("Jury : "));
 		final JButton chooseJury;
 		if(exam.getJury()==(null)){
@@ -104,16 +116,24 @@ public class AddExamEventFrame extends JDialog{
 		});
 		centre.add(chooseJury);
 		
+		//Choix de la salle
 		centre.add(new JLabel(ApplicationSession.instance().getString("classroom") + " : "));
-		centre.add(new JComboBox());
+		JComboBox classroom = new JComboBox();
+		classroom.addActionListener(notImplemented);
+		centre.add(classroom);
 		
+		//Choix des documents
 		centre.add(new JLabel(ApplicationSession.instance().getString("documents") + " : "));
-		centre.add(new JButton(ApplicationSession.instance().getString("choosedocuments")));
+		JButton documents = new JButton(ApplicationSession.instance().getString("choosedocuments"));
+		documents.setEnabled(false);
+		documents.setText(ApplicationSession.instance().getString("notimplemented"));
+		centre.add(documents);
 		
 		this.add(centre, BorderLayout.CENTER);
 		
 		JPanel sud = new JPanel(new GridLayout(1,1));
 		
+		//Ajouter la soutenance
 		JButton ajouter = new JButton(ApplicationSession.instance().getString("save"));
 		ajouter.addActionListener(new ActionListener() {
 

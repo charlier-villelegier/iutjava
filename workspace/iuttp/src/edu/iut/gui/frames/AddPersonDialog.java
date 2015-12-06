@@ -26,7 +26,7 @@ public class AddPersonDialog extends JDialog{
 	PersonFunction function;
 	
 	public AddPersonDialog(JDialog container, DefaultListModel<String> person, PersonFunction function){
-		super(container,"Ajouter une personne",true);
+		super(container,ApplicationSession.instance().getString("addperson"),true);
 		this.person=person;
 		this.function=function;
 		this.setupUI();
@@ -40,11 +40,11 @@ public class AddPersonDialog extends JDialog{
 		
 		JPanel panel = new JPanel(new GridLayout(4,2));
 		
-		panel.add(new JLabel("Prénom : "));
+		panel.add(new JLabel(ApplicationSession.instance().getString("firstname")+" : " ));
 		final JTextField firstname = new JTextField();
 		panel.add(firstname);
 		
-		panel.add(new JLabel("Nom : "));
+		panel.add(new JLabel(ApplicationSession.instance().getString("lastname")+" : " ));
 		final JTextField lastname = new JTextField();
 		panel.add(lastname);
 		
@@ -52,13 +52,13 @@ public class AddPersonDialog extends JDialog{
 		final JTextField email = new JTextField();
 		panel.add(email);
 		
-		panel.add(new JLabel("Téléphone : "));
+		panel.add(new JLabel(ApplicationSession.instance().getString("phone")+" : " ));
 		final JTextField phone = new JTextField();
 		panel.add(phone);
 		
 		this.add(panel,BorderLayout.CENTER);
 		
-		JButton accept = new JButton("Ajouter");
+		JButton accept = new JButton(ApplicationSession.instance().getString("add"));
 		accept.addActionListener(new ActionListener() {
 
 			@Override
@@ -78,7 +78,7 @@ public class AddPersonDialog extends JDialog{
 					CloseDialog();
 				}
 				else{
-					JOptionPane.showMessageDialog(null,"Veuillez remplir toutes les informations");				
+					JOptionPane.showMessageDialog(null,ApplicationSession.instance().getString("fillall"));				
 				}
 				
 			}			

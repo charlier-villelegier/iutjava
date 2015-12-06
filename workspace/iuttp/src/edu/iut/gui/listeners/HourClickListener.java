@@ -35,7 +35,7 @@ public class HourClickListener implements MouseListener{
 			JPopupMenu menu = new JPopupMenu();
 			
 			
-			JMenuItem modif = new JMenuItem("Modifier");
+			JMenuItem modif = new JMenuItem(ApplicationSession.instance().getString("edit"));
 			modif.addActionListener(new ActionListener() {
 
 				@Override
@@ -45,12 +45,12 @@ public class HourClickListener implements MouseListener{
 			});
 			
 			
-			JMenuItem delete = new JMenuItem("Supprimer");
+			JMenuItem delete = new JMenuItem(ApplicationSession.instance().getString("delete"));
 			delete.addActionListener(new ActionListener() {
 
 				@Override
 				public void actionPerformed(ActionEvent arg0) {
-					if(JOptionPane.showConfirmDialog (container, "Voulez vous vraiment supprimer ?","Confirmation",JOptionPane.YES_NO_OPTION)==JOptionPane.YES_NO_OPTION){
+					if(JOptionPane.showConfirmDialog (container, ApplicationSession.instance().getString("deletemessage"),"Confirmation",JOptionPane.YES_NO_OPTION)==JOptionPane.YES_NO_OPTION){
 						ApplicationSession.instance().getAgenda().remove(examDate.getFirst());
 						ApplicationSession.instance().getMyFrame().majView();
 					}

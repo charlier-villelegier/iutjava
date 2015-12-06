@@ -13,7 +13,7 @@ import javax.swing.SwingUtilities;
 
 public class IUTScheduler {
 	public static void main(String[] args) {
-		Locale.setDefault(Locale.FRANCE);
+		Locale.setDefault(Locale.US);
 		CommandLineParser commandLineParser = new CommandLineParser();
 		CommandLineOption<java.io.File> configOption = new CommandLineOption<java.io.File>(CommandLineOption.OptionType.FILE, "config","configuration file",new java.io.File("/tmp"));
 		commandLineParser.addOption(configOption);

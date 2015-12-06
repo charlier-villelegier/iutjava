@@ -102,7 +102,7 @@ public class JuryChoiceDialog extends JDialog{
 		panel.add(panelCentre, BorderLayout.CENTER);
 		
 		
-		JButton addJury = new JButton("Ajouter un jury");
+		JButton addJury = new JButton(ApplicationSession.instance().getString("addjury"));
 		addJury.addActionListener(new ActionListener() {
 
 			@Override
@@ -111,12 +111,12 @@ public class JuryChoiceDialog extends JDialog{
 			}			
 		});
 		
-		JButton save = new JButton("Enregistrer");
+		JButton save = new JButton(ApplicationSession.instance().getString("save"));
 		save.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				juryButton.setText(choosenName.size() + " membre(s)");
+				juryButton.setText(choosenName.size() + " " + ApplicationSession.instance().getString("member"));
 				ArrayList<Person> listeMembre = new ArrayList<Person>();
 				for (Person unJury : ApplicationSession.instance().getAgenda().getJurys()){
 					if(choosenName.contains(unJury.toString())){

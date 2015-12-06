@@ -26,7 +26,7 @@ public class AddExamEventFrame extends JDialog{
 	Date dateExam;
 	
 	public AddExamEventFrame(Date d){
-		super(ApplicationSession.instance().getMyFrame(),"Ajouter un examen",true);
+		super(ApplicationSession.instance().getMyFrame(),ApplicationSession.instance().getString("addexam"),true);
 		
 		this.dateExam=d;
 		
@@ -60,20 +60,20 @@ public class AddExamEventFrame extends JDialog{
 				+ c.get(Calendar.DAY_OF_MONTH) 
 				+ " " 
 				+ ApplicationSession.instance().getMonths()[c.get(Calendar.MONTH)]
-				+ " à "
+				+ " : "
 				+ c.get(Calendar.HOUR_OF_DAY)
 				+ "h");
 		
 		this.setLayout(new BorderLayout());
 		
 		JPanel centre = new JPanel(new GridLayout(5,2));
-		centre.add(new JLabel("Date : "));
+		centre.add(new JLabel(ApplicationSession.instance().getString("date")));
 		centre.add(date);
 		
-		centre.add(new JLabel("Etudiant : "));
+		centre.add(new JLabel(ApplicationSession.instance().getString("student")+" : "));
 		final JButton chooseStudent;
 		if(exam.getStudent()==(null)){
-			 chooseStudent = new JButton("Choisissez un étudiant");
+			 chooseStudent = new JButton(ApplicationSession.instance().getString("choosestudent"));
 		}
 		else{
 			chooseStudent = new JButton(exam.getStudent().toString());
@@ -90,10 +90,10 @@ public class AddExamEventFrame extends JDialog{
 		centre.add(new JLabel("Jury : "));
 		final JButton chooseJury;
 		if(exam.getJury()==(null)){
-			 chooseJury = new JButton("Choisissez les membres");
+			 chooseJury = new JButton(ApplicationSession.instance().getString("choosemember"));
 		}
 		else{
-			chooseJury = new JButton(exam.getJury().size() + " membre(s)");
+			chooseJury = new JButton(exam.getJury().size() + " " + ApplicationSession.instance().getString("member"));
 		}
 		chooseJury.addActionListener(new ActionListener() {
 
@@ -104,17 +104,17 @@ public class AddExamEventFrame extends JDialog{
 		});
 		centre.add(chooseJury);
 		
-		centre.add(new JLabel("Salle : "));
+		centre.add(new JLabel(ApplicationSession.instance().getString("classroom") + " : "));
 		centre.add(new JComboBox());
 		
-		centre.add(new JLabel("Documents : "));
-		centre.add(new JButton("Choisissez les documents"));
+		centre.add(new JLabel(ApplicationSession.instance().getString("documents") + " : "));
+		centre.add(new JButton(ApplicationSession.instance().getString("choosedocuments")));
 		
 		this.add(centre, BorderLayout.CENTER);
 		
 		JPanel sud = new JPanel(new GridLayout(1,1));
 		
-		JButton ajouter = new JButton("Enregistrer");
+		JButton ajouter = new JButton(ApplicationSession.instance().getString("save"));
 		ajouter.addActionListener(new ActionListener() {
 
 			@Override

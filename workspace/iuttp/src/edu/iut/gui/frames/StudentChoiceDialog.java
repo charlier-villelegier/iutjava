@@ -27,7 +27,7 @@ public class StudentChoiceDialog extends JDialog{
 	ExamEvent exam;
 	
 	public StudentChoiceDialog(JDialog container, JButton student, ExamEvent exam){
-		super(container,"Choisir un étudiant",true);
+		super(container,ApplicationSession.instance().getString("choosestudent"),true);
 		this.studentButton=student;
 		this.exam=exam;
 		
@@ -98,7 +98,7 @@ public class StudentChoiceDialog extends JDialog{
 		
 		panel.add(students, BorderLayout.CENTER);
 		
-		JButton addStudent = new JButton("Ajouter un étudiant");
+		JButton addStudent = new JButton(ApplicationSession.instance().getString("addstudent"));
 		addStudent.addActionListener(new ActionListener() {
 
 			@Override

@@ -10,7 +10,10 @@ import edu.iut.gui.frames.SchedulerFrame;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 
-
+/**
+ * <b>IUTScheduler est la classe contenant le main et permet donc de lancer l'application
+ * en initialisant tous les composants.</b>
+ */
 public class IUTScheduler {
 	public static void main(String[] args) {
 		Locale.setDefault(Locale.FRANCE);

@@ -20,6 +20,9 @@ import edu.iut.app.Person;
 import edu.iut.app.Person.PersonFunction;
 import edu.iut.gui.widget.agenda.AgendaPanelFactory.ActiveView;
 
+/**
+ * <b>StudentChoiceDialog est la classe graphique permettant d'associer un étudiant à une soutenance donnée.</b>
+ */
 public class StudentChoiceDialog extends JDialog{
 	
 	

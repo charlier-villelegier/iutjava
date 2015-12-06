@@ -22,6 +22,9 @@ import edu.iut.app.Person;
 import edu.iut.app.Person.PersonFunction;
 import edu.iut.gui.widget.agenda.AgendaPanelFactory.ActiveView;
 
+/**
+ * <b>AddExamEventFrame est la classe graphique permettant l'ajout d'une soutenance dans le planing.</b>
+ */
 public class AddExamEventFrame extends JDialog{
 	
 	Date dateExam;

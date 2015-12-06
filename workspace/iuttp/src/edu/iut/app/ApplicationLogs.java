@@ -1,5 +1,8 @@
 package edu.iut.app;
 
+/**
+ * <b>ApplicationLog
+ */
 import java.util.ArrayList;
 
 

@@ -20,6 +20,9 @@ import edu.iut.app.Person;
 import edu.iut.app.Person.PersonFunction;
 import edu.iut.gui.widget.agenda.AgendaPanelFactory.ActiveView;
 
+/**
+ * <b>AddPersonDialog est la classe graphique permettant l'ajout d'une personne (juri ou étudiant) via le planing.</b>
+ */
 public class AddPersonDialog extends JDialog{
 	
 	DefaultListModel<String> person;

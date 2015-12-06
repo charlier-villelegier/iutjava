@@ -19,7 +19,9 @@ import edu.iut.gui.widget.agenda.AgendaPanelFactory;
 import edu.iut.gui.widget.agenda.ControlAgendaViewPanel;
 import edu.iut.gui.widget.agenda.AgendaPanelFactory.ActiveView;
 
-
+/**
+ * <b>SchedulerFrame est la classe graphique représentant l'application de base avec les différentes vues du planing.</b>
+ */
 public class SchedulerFrame extends JFrame {
 	JPanel contentPane;
 	CardLayout layerLayout;

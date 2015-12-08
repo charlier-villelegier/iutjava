@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<java version="1.7.0_71" class="java.beans.XMLDecoder">
+ <object class="edu.iut.app.Agenda">
+  <void method="add">
+   <object class="edu.iut.app.ExamEvent">
+    <void property="examDate">
+     <object class="java.util.Date">
+      <long>1449594000000</long>
+     </object>
+    </void>
+    <void property="jury">
+     <object class="java.util.ArrayList">
+      <void method="add">
+       <object class="edu.iut.app.Person" id="Person0">
+        <void property="email">
+         <string>helene.maynard@u-psud.fr</string>
+        </void>
+        <void property="firstname">
+         <string>Hélène</string>
+        </void>
+        <void property="function">
+         <object class="java.lang.Enum" id="Person$PersonFunction0" method="valueOf">
+          <class>edu.iut.app.Person$PersonFunction</class>
+          <string>JURY</string>
+         </object>
+        </void>
+        <void property="lastname">
+         <string>Maynard</string>
+        </void>
+        <void property="phone">
+         <string>0611223344</string>
+        </void>
+       </object>
+      </void>
+     </object>
+    </void>
+    <void property="student">
+     <object class="edu.iut.app.Person" id="Person1">
+      <void property="email">
+       <string>leo.charlier@u-psud.fr</string>
+      </void>
+      <void property="firstname">
+       <string>Léo</string>
+      </void>
+      <void property="function">
+       <object class="java.lang.Enum" id="Person$PersonFunction1" method="valueOf">
+        <class>edu.iut.app.Person$PersonFunction</class>
+        <string>STUDENT</string>
+       </object>
+      </void>
+      <void property="lastname">
+       <string>Charlier</string>
+      </void>
+      <void property="phone">
+       <string>0611223344</string>
+      </void>
+     </object>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="edu.iut.app.ExamEvent">
+    <void property="examDate">
+     <object class="java.util.Date">
+      <long>1449666000000</long>
+     </object>
+    </void>
+    <void property="jury">
+     <object class="java.util.ArrayList">
+      <void method="add">
+       <object idref="Person0"/>
+      </void>
+     </object>
+    </void>
+    <void property="student">
+     <object class="edu.iut.app.Person" id="Person2">
+      <void property="email">
+       <string>xavier.villelegier@u-psud.fr</string>
+      </void>
+      <void property="firstname">
+       <string>Xavier</string>
+      </void>
+      <void property="function">
+       <object idref="Person$PersonFunction1"/>
+      </void>
+      <void property="lastname">
+       <string>Villelégier</string>
+      </void>
+      <void property="phone">
+       <string>0611223344</string>
+      </void>
+     </object>
+    </void>
+   </object>
+  </void>
+  <void property="jurys">
+   <void method="add">
+    <object class="edu.iut.app.Person">
+     <void property="email">
+      <string>nicolas.ferey@u-psud.fr</string>
+     </void>
+     <void property="firstname">
+      <string>Nicolas</string>
+     </void>
+     <void property="function">
+      <object idref="Person$PersonFunction0"/>
+     </void>
+     <void property="lastname">
+      <string>Ferey</string>
+     </void>
+     <void property="phone">
+      <string>0611223344</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object idref="Person0"/>
+   </void>
+   <void method="add">
+    <object class="edu.iut.app.Person">
+     <void property="email">
+      <string>julien.tourille@u-psud.fr</string>
+     </void>
+     <void property="firstname">
+      <string>Julien</string>
+     </void>
+     <void property="function">
+      <object idref="Person$PersonFunction0"/>
+     </void>
+     <void property="lastname">
+      <string>Tourille</string>
+     </void>
+     <void property="phone">
+      <string>0611223344</string>
+     </void>
+    </object>
+   </void>
+  </void>
+  <void property="students">
+   <void method="add">
+    <object idref="Person1"/>
+   </void>
+   <void method="add">
+    <object idref="Person2"/>
+   </void>
+  </void>
+ </object>
+</java>

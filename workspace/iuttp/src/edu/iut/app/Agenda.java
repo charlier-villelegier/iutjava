@@ -7,8 +7,8 @@ import java.util.LinkedList;
 import edu.iut.app.Person.PersonFunction;
 
 /**
- * <b>Agenda est la classe représentant le planing des soutenances.</b>
- * <p>Un agenda est caractérisé par une liste d'ExamEvent et deux listes de Person (une d'étudiants et une de juris).</p>
+ * <b>Agenda est la classe reprï¿½sentant le planing des soutenances.</b>
+ * <p>Un agenda est caractï¿½risï¿½ par une liste d'ExamEvent et deux listes de Person (une d'ï¿½tudiants et une de juris).</p>
  * 
  * @see ExamEvent
  * @see Person
@@ -21,7 +21,7 @@ public class Agenda extends LinkedList<ExamEvent> implements ICriteriaPerson, IC
 	/**
 	 * Constructeur vide Agenda
 	 * <p>
-	 * Ce constructeur initialise la liste des étudiants et des juris.
+	 * Ce constructeur initialise la liste des ï¿½tudiants et des juris.
 	 * </p>
 	 */
 	public Agenda() {
@@ -30,10 +30,10 @@ public class Agenda extends LinkedList<ExamEvent> implements ICriteriaPerson, IC
 	}
 	
 	/**
-	 * Ajoute un ExamEvent à la liste de l'agenda.
+	 * Ajoute un ExamEvent ï¿½ la liste de l'agenda.
 	 * 
 	 * @param examEvent
-	 * 		ExamEvent à ajouter.
+	 * 		ExamEvent ï¿½ ajouter.
 	 * 
 	 * @see ExamEvent
 	 */
@@ -45,6 +45,14 @@ public class Agenda extends LinkedList<ExamEvent> implements ICriteriaPerson, IC
 	
 	
 	
+	public void setStudents(ArrayList<Person> students) {
+		this.students = students;
+	}
+
+	public void setJurys(ArrayList<Person> jurys) {
+		this.jurys = jurys;
+	}
+
 	public ArrayList<Person> getStudents() {
 		return students;
 	}
@@ -58,12 +66,12 @@ public class Agenda extends LinkedList<ExamEvent> implements ICriteriaPerson, IC
 	//Person
 	
 	/**
-	 * Retourne une liste d'ExamEvent qui contiennent le prénom passé en paramètre selon sa fonction.
+	 * Retourne une liste d'ExamEvent qui contiennent le prï¿½nom passï¿½ en paramï¿½tre selon sa fonction.
 	 * 
 	 * @param function
-	 * 			La fonction de la personne souhaitée.
+	 * 			La fonction de la personne souhaitï¿½e.
 	 * @param firstName
-	 * 			Le prénom de la personne souhaitée.
+	 * 			Le prï¿½nom de la personne souhaitï¿½e.
 	 * 
 	 * @see ExamEvent
 	 * @see Person
@@ -94,12 +102,12 @@ public class Agenda extends LinkedList<ExamEvent> implements ICriteriaPerson, IC
 	}
 	
 	/**
-	 * Retourne une liste d'ExamEvent qui contiennent le nom passé en paramètre selon sa fonction.
+	 * Retourne une liste d'ExamEvent qui contiennent le nom passï¿½ en paramï¿½tre selon sa fonction.
 	 * 
 	 * @param function
-	 * 			La fonction de la personne souhaitée.
+	 * 			La fonction de la personne souhaitï¿½e.
 	 * @param lastName
-	 * 			Le nom de la personne souhaitée.
+	 * 			Le nom de la personne souhaitï¿½e.
 	 * 
 	 * @see ExamEvent
 	 * @see Person
@@ -130,12 +138,12 @@ public class Agenda extends LinkedList<ExamEvent> implements ICriteriaPerson, IC
 	}
 	
 	/**
-	 * Retourne une liste d'ExamEvent qui contiennent l'adresse électronique passée en paramètre selon sa fonction.
+	 * Retourne une liste d'ExamEvent qui contiennent l'adresse ï¿½lectronique passï¿½e en paramï¿½tre selon sa fonction.
 	 * 
 	 * @param function
-	 * 			La fonction de la personne souhaitée.
+	 * 			La fonction de la personne souhaitï¿½e.
 	 * @param mail
-	 * 			L'adresse électronique de la personne souhaitée.
+	 * 			L'adresse ï¿½lectronique de la personne souhaitï¿½e.
 	 * 
 	 * @see ExamEvent
 	 * @see Person
@@ -166,12 +174,12 @@ public class Agenda extends LinkedList<ExamEvent> implements ICriteriaPerson, IC
 	}
 	
 	/**
-	 * Retourne une liste d'ExamEvent qui contiennent le numéro de téléphone passé en paramètre selon sa fonction.
+	 * Retourne une liste d'ExamEvent qui contiennent le numï¿½ro de tï¿½lï¿½phone passï¿½ en paramï¿½tre selon sa fonction.
 	 * 
 	 * @param function
-	 * 			La fonction de la personne souhaitée.
+	 * 			La fonction de la personne souhaitï¿½e.
 	 * @param phone
-	 * 			Le numéro de téléphone de la personne souhaitée.
+	 * 			Le numï¿½ro de tï¿½lï¿½phone de la personne souhaitï¿½e.
 	 * 
 	 * @see ExamEvent
 	 * @see Person
@@ -206,10 +214,10 @@ public class Agenda extends LinkedList<ExamEvent> implements ICriteriaPerson, IC
 	//Document
 	
 	/**
-	 * Retourne une liste d'ExamEvent qui contiennent le document passé en paramètre.
+	 * Retourne une liste d'ExamEvent qui contiennent le document passï¿½ en paramï¿½tre.
 	 * 
 	 * @param uri
-	 * 			Le document souhaité.
+	 * 			Le document souhaitï¿½.
 	 * 
 	 * @see ExamEvent
 	 * @see Document
@@ -232,10 +240,10 @@ public class Agenda extends LinkedList<ExamEvent> implements ICriteriaPerson, IC
 	//Date
 	
 	/**
-	 * Retourne une liste d'ExamEvent qui ont lieu avant la date passée en paramètre.
+	 * Retourne une liste d'ExamEvent qui ont lieu avant la date passï¿½e en paramï¿½tre.
 	 * 
 	 * @param date
-	 * 			La date souhaitée.
+	 * 			La date souhaitï¿½e.
 	 * 
 	 * @see ExamEvent
 	 */
@@ -252,10 +260,10 @@ public class Agenda extends LinkedList<ExamEvent> implements ICriteriaPerson, IC
 	}
 	
 	/**
-	 * Retourne une liste d'ExamEvent qui ont lieu après la date passée en paramètre.
+	 * Retourne une liste d'ExamEvent qui ont lieu aprï¿½s la date passï¿½e en paramï¿½tre.
 	 * 
 	 * @param date
-	 * 			La date souhaitée.
+	 * 			La date souhaitï¿½e.
 	 * 
 	 * @see ExamEvent
 	 */
@@ -272,10 +280,10 @@ public class Agenda extends LinkedList<ExamEvent> implements ICriteriaPerson, IC
 	}
 	
 	/**
-	 * Retourne une liste d'ExamEvent qui ont lieu à la date passée en paramètre.
+	 * Retourne une liste d'ExamEvent qui ont lieu ï¿½ la date passï¿½e en paramï¿½tre.
 	 * 
 	 * @param date
-	 * 			La date souhaitée.
+	 * 			La date souhaitï¿½e.
 	 * 
 	 * @see ExamEvent
 	 */

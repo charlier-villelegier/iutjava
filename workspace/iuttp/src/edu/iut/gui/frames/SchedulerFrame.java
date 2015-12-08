@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.File;
 
 import javax.swing.JFrame;
 import javax.swing.JMenu;
@@ -18,9 +19,10 @@ import edu.iut.app.ApplicationSession;
 import edu.iut.gui.widget.agenda.AgendaPanelFactory;
 import edu.iut.gui.widget.agenda.ControlAgendaViewPanel;
 import edu.iut.gui.widget.agenda.AgendaPanelFactory.ActiveView;
+import edu.iut.io.XMLProjectWriter;
 
 /**
- * <b>SchedulerFrame est la classe graphique représentant l'application de base avec les différentes vues du planing.</b>
+ * <b>SchedulerFrame est la classe graphique reprï¿½sentant l'application de base avec les diffï¿½rentes vues du planing.</b>
  */
 public class SchedulerFrame extends JFrame {
 	JPanel contentPane;
@@ -53,7 +55,7 @@ public class SchedulerFrame extends JFrame {
 			}			
 		};
 	
-		JSplitPane splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,agendaViewPanel, contentPane);
+		JSplitPane splitPane = new JSplitPane(JSplitPane.VERTICAL_SPLIT,agendaViewPanel, contentPane);
 		this.setContentPane(splitPane);
 		
 		JMenuBar menuBar = new JMenuBar();
@@ -68,7 +70,15 @@ public class SchedulerFrame extends JFrame {
 		menuItem.addActionListener(notImplemented);
 		menu.add(menuItem);
 		menuItem=new JMenuItem(ApplicationSession.instance().getString("save"));
-		menuItem.addActionListener(notImplemented);
+		menuItem.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				XMLProjectWriter xmltools = new XMLProjectWriter();
+				xmltools.save(ApplicationSession.instance().getAgenda(), new File("agenda.xml"));
+				JOptionPane.showMessageDialog(null,"Saved");
+			}			
+		});
 		menu.add(menuItem);
 		menuItem=new JMenuItem(ApplicationSession.instance().getString("quit"));
 		menuItem.addActionListener(notImplemented);
@@ -132,7 +142,7 @@ public class SchedulerFrame extends JFrame {
 		
 		
 		this.setJMenuBar(menuBar);
-		this.pack();
+		this.setExtendedState(JFrame.MAXIMIZED_BOTH);
 	}
 	
 	public SchedulerFrame() {

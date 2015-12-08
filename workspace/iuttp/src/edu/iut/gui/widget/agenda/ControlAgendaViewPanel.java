@@ -36,12 +36,13 @@ public class ControlAgendaViewPanel extends JPanel {
 		c.setFirstDayOfWeek(Calendar.MONDAY);
 		
 		int actualYear = c.get(Calendar.YEAR);
-		JPanel panelDate = new JPanel(new GridLayout(3,1));
+		JPanel panelDate = new JPanel(new GridLayout(1,3));
 		
 		final JComboBox<String> day = new JComboBox<String>();
 		final JComboBox<String> month = new JComboBox<String>(ApplicationSession.instance().getMonths());
 		SpinnerModel yearModel = new SpinnerNumberModel(actualYear, actualYear-5, actualYear+5, 1);
 		final JSpinner year = new JSpinner(yearModel);
+		year.setEditor(new JSpinner.NumberEditor(year,"#"));
 		year.addChangeListener((new ChangeListener() {
 
 			@Override

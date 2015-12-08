@@ -14,19 +14,19 @@ import edu.iut.gui.frames.SchedulerFrame;
 import edu.iut.gui.widget.agenda.AgendaPanelFactory.ActiveView;
 
 /**
- * <b>ApplicationSession est un singleton représentant une session en cours.
- * Il gère donc l'internationalisation ainsi que les logger (d'erreur, d'information et d'avertissement).</b>
- * <p>Une session est caractérisée par :
+ * <b>ApplicationSession est un singleton reprï¿½sentant une session en cours.
+ * Il gï¿½re donc l'internationalisation ainsi que les logger (d'erreur, d'information et d'avertissement).</b>
+ * <p>Une session est caractï¿½risï¿½e par :
  * <ul>
  * <li>Un ressourceBundle</li>
  * <li>Un locale</li>
  * <li>Une sessionGuiLogger</li>
  * <li>Une sessionExceptionLogger</li>
- * <li>La liste des mois de l'année</li>
+ * <li>La liste des mois de l'annï¿½e</li>
  * <li>La liste des jours de la semaine</li>
  * <li>Une date</li>
  * <li>Un agenda</li>
- * <li>Une fenêtre graphique</li>
+ * <li>Une fenï¿½tre graphique</li>
  * <li>La vue actuelle (jour, semaine, mois)</li>
  * </ul>
  * </p>
@@ -79,19 +79,19 @@ public class ApplicationSession {
 		
 		agenda = new Agenda();
 		
-		agenda.getStudents().add(new Person(PersonFunction.STUDENT,"LÃ©o","Charlier","leo.charlier@u-psud.fr","0611223344"));
+		//agenda.getStudents().add(new Person(PersonFunction.STUDENT,"LÃ©o","Charlier","leo.charlier@u-psud.fr","0611223344"));
 		
-		
-		agenda.getJurys().add(new Person(PersonFunction.JURY,"HÃ©lÃ¨ne","Maynard","helene.maynard@u-psud.fr","0611223344"));
-		agenda.getJurys().add(new Person(PersonFunction.JURY,"Julien","Tourille","julien.tourille@u-psud.fr","0611223344"));
+		//agenda.getJurys().add(new Person(PersonFunction.JURY,"Nicolas","Ferey","nicolas.ferey@u-psud.fr","0611223344"));
+		//agenda.getJurys().add(new Person(PersonFunction.JURY,"HÃ©lÃ¨ne","Maynard","helene.maynard@u-psud.fr","0611223344"));
+		//agenda.getJurys().add(new Person(PersonFunction.JURY,"Julien","Tourille","julien.tourille@u-psud.fr","0611223344"));
 		
 		
 		actualView=ActiveView.DAY_VIEW;
 	}
 	
 	/**
-	 * Crée une nouvelle instance d'ApplicationSession si celle-ci et nulle et la retourne.
-	 * Si une instance existe déjà elle ne fait que la retourner.
+	 * Crï¿½e une nouvelle instance d'ApplicationSession si celle-ci et nulle et la retourne.
+	 * Si une instance existe dï¿½jï¿½ elle ne fait que la retourner.
 	 * 
 	 * @return La session.
 	 */
@@ -125,11 +125,11 @@ public class ApplicationSession {
 	}
 	
 	/**
-	 * Retourne la clé du ressourceBundle.
+	 * Retourne la clï¿½ du ressourceBundle.
 	 * 
 	 * @param key
-	 * 			La clé du ressourceBundle.
-	 * @return La clé du ressourceBundle.
+	 * 			La clï¿½ du ressourceBundle.
+	 * @return La clï¿½ du ressourceBundle.
 	 */
 	public String getString(String key) {
 		return resourceBundle.getString(key);
@@ -144,8 +144,8 @@ public class ApplicationSession {
 	}
 	
 	/**
-	 * Retourne les mois de l'année.
-	 * @return Une liste des mois de l'année.
+	 * Retourne les mois de l'annï¿½e.
+	 * @return Une liste des mois de l'annï¿½e.
 	 */
 	public String[] getMonths() {
 		return months;
@@ -161,9 +161,9 @@ public class ApplicationSession {
 	}
 
 	/**
-	 * Retourne la fenêtre graphique.
+	 * Retourne la fenï¿½tre graphique.
 	 * 
-	 * @return la fenêtre graphique.
+	 * @return la fenï¿½tre graphique.
 	 * 
 	 * @see SchedulerFrame
 	 */
@@ -172,10 +172,10 @@ public class ApplicationSession {
 	}
 
 	/**
-	 * Met à jour la fenêtre graphique.
+	 * Met ï¿½ jour la fenï¿½tre graphique.
 	 * 
 	 * @param myFrame
-	 * 			La nouvelle fenêtre graphique.
+	 * 			La nouvelle fenï¿½tre graphique.
 	 */
 	public void setMyFrame(SchedulerFrame myFrame) {
 		this.myFrame = myFrame;
@@ -202,13 +202,17 @@ public class ApplicationSession {
 	}
 
 	/**
-	 * Met à jour la vue actuelle de la session en cours.
+	 * Met ï¿½ jour la vue actuelle de la session en cours.
 	 * 
 	 * @param actualView
-	 * 			La nouvelle vue désirée.
+	 * 			La nouvelle vue dï¿½sirï¿½e.
 	 */
 	public void setActualView(ActiveView actualView) {
 		this.actualView = actualView;
+	}
+
+	public void setAgenda(Agenda agenda) {
+		this.agenda = agenda;
 	}
 
 	

@@ -1,6 +1,8 @@
 package edu.iut.gui.frames;
 
 import java.awt.CardLayout;
+import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
@@ -57,6 +59,7 @@ public class SchedulerFrame extends JFrame {
 	
 		JSplitPane splitPane = new JSplitPane(JSplitPane.VERTICAL_SPLIT,agendaViewPanel, contentPane);
 		this.setContentPane(splitPane);
+		
 		
 		JMenuBar menuBar = new JMenuBar();
 		JMenu menu;		
@@ -142,6 +145,7 @@ public class SchedulerFrame extends JFrame {
 		
 		
 		this.setJMenuBar(menuBar);
+		
 		this.setExtendedState(JFrame.MAXIMIZED_BOTH);
 	}
 	

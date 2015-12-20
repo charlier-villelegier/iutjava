@@ -93,6 +93,34 @@
     </void>
    </object>
   </void>
+  <void method="add">
+   <object class="edu.iut.app.ExamEvent">
+    <void property="examDate">
+     <object class="java.util.Date">
+      <long>1449583200000</long>
+     </object>
+    </void>
+    <void property="student">
+     <object class="edu.iut.app.Person" id="Person3">
+      <void property="email">
+       <string>tyui</string>
+      </void>
+      <void property="firstname">
+       <string>Clément</string>
+      </void>
+      <void property="function">
+       <object idref="Person$PersonFunction1"/>
+      </void>
+      <void property="lastname">
+       <string>Condette</string>
+      </void>
+      <void property="phone">
+       <string>yuio</string>
+      </void>
+     </object>
+    </void>
+   </object>
+  </void>
   <void property="jurys">
    <void method="add">
     <object class="edu.iut.app.Person">
@@ -142,6 +170,9 @@
    </void>
    <void method="add">
     <object idref="Person2"/>
+   </void>
+   <void method="add">
+    <object idref="Person3"/>
    </void>
   </void>
  </object>

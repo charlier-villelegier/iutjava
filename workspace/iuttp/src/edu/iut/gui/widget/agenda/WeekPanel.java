@@ -2,6 +2,7 @@ package edu.iut.gui.widget.agenda;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.util.Calendar;
 import java.util.Date;
@@ -77,4 +78,8 @@ public class WeekPanel extends EventPanel {
 		this.add(centre, BorderLayout.CENTER);
 		
 	}
+	
+	
+		
+	
 }

@@ -123,4 +123,5 @@ public class ControlAgendaViewPanel extends JPanel {
 		return selectedDay;
 	}
 	
+	
 }

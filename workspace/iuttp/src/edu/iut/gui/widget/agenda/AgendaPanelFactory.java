@@ -1,6 +1,8 @@
 package edu.iut.gui.widget.agenda;
 
 
+import java.util.Calendar;
+
 import javax.swing.JPanel;
 
 import edu.iut.app.ApplicationSession;
@@ -41,7 +43,7 @@ public class AgendaPanelFactory {
 				agendaView = weekPanel;
 				break;
 			case DAY_VIEW:
-				DayPanel dayPanel = new DayPanel(activeView,WeekDayNames.EMPTYDAY);
+				DayPanel dayPanel = new DayPanel(activeView,WeekDayNames.values()[((ApplicationSession.instance().getDateSelected().get(Calendar.DAY_OF_WEEK)+5)%7)+1]);
 				agendaView = dayPanel;
 				break;
 			default:

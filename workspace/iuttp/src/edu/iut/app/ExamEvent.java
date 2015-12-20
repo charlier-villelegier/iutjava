@@ -1,11 +1,12 @@
 package edu.iut.app;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 
 import edu.iut.app.Person.PersonFunction;
 
-public class ExamEvent {
+public class ExamEvent implements Comparable{
 	public ExamEvent() {		
 	}
 	
@@ -64,6 +65,11 @@ public class ExamEvent {
 
 	public void setDocuments(ArrayList<Document> documents) {
 		this.documents = documents;
+	}
+
+	@Override
+	public int compareTo(Object o) {
+		return(this.getExamDate().compareTo(((ExamEvent) o).getExamDate()));
 	}
 
 	

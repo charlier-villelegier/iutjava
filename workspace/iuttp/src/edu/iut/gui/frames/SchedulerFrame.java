@@ -49,6 +49,8 @@ public class SchedulerFrame extends JFrame {
 		contentPane.add(weekView,ActiveView.WEEK_VIEW.name());
 		contentPane.add(monthView,ActiveView.MONTH_VIEW.name());
 		
+		
+		
 		ActionListener notImplemented = new ActionListener() {
 
 			@Override
@@ -154,6 +156,8 @@ public class SchedulerFrame extends JFrame {
 		
 		addWindowListener (new WindowAdapter(){
 			public void windowClosing (WindowEvent e){
+				XMLProjectWriter xmltools = new XMLProjectWriter();
+				xmltools.save(ApplicationSession.instance().getAgenda(), new File("agenda.xml"));
 				System.exit(0);
 			}
 		});
@@ -169,6 +173,8 @@ public class SchedulerFrame extends JFrame {
 		super(title);
 		addWindowListener (new WindowAdapter(){
 			public void windowClosing (WindowEvent e){
+				XMLProjectWriter xmltools = new XMLProjectWriter();
+				xmltools.save(ApplicationSession.instance().getAgenda(), new File("agenda.xml"));
 				System.exit(0);
 			}
 		});

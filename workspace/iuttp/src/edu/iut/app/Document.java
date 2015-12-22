@@ -1,15 +1,15 @@
 package edu.iut.app;
 
 /**
- * <b>Document est la classe représentant les documents à rapporter le jour de la soutenance.</b>
- * <p>Un document est caractérisé par le chemin du fichier du document concerné.</p>
+ * <b>Document est la classe reprï¿½sentant les documents ï¿½ rapporter le jour de la soutenance.</b>
+ * <p>Un document est caractï¿½risï¿½ par le chemin du fichier du document concernï¿½.</p>
  */
 public class Document {
 	
 	/**
 	 * Constructeur vide Document
 	 * <p>
-	 * En utilisant ce constructeur, on initialise le nom du fichier par une chaîne de caractère
+	 * En utilisant ce constructeur, on initialise le nom du fichier par une chaï¿½ne de caractï¿½re
 	 * vide.
 	 * </p>
 	 */
@@ -20,20 +20,19 @@ public class Document {
 	/**
 	 * Constructeur Document
 	 * <p>
-	 * En utilisant ce constructeur, on initialise le nom du fichier par une chaîne de caractère
-	 * passée en paramètre.
+	 * En utilisant ce constructeur, on initialise le nom du fichier par une chaï¿½ne de caractï¿½re
+	 * passï¿½e en paramï¿½tre.
 	 * </p>
 	 * 
 	 * @param documentURI
 	 * 			Le chemin du document.
 	 */
 	public Document(String documentURI) {
-		/* EX2 : Affectation */
 		this.documentURI = documentURI;
 	}
 	
 	/**
-	 * Met à jour le chemin du fichier.
+	 * Met ï¿½ jour le chemin du fichier.
 	 * 
 	 * @param number
 	 * 			Le nouveau chemin du fichier.

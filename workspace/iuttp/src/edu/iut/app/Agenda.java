@@ -17,6 +17,7 @@ public class Agenda extends LinkedList<ExamEvent> implements ICriteriaPerson, IC
 	
 	protected ArrayList<Person> students;
 	protected ArrayList<Person> jurys;
+	protected ArrayList<Document> documents;
 	
 	/**
 	 * Constructeur vide Agenda
@@ -27,6 +28,7 @@ public class Agenda extends LinkedList<ExamEvent> implements ICriteriaPerson, IC
 	public Agenda() {
 		students = new ArrayList<Person>();
 		jurys = new ArrayList<Person>();
+		documents = new ArrayList<Document>();
 	}
 	
 	/**
@@ -45,6 +47,14 @@ public class Agenda extends LinkedList<ExamEvent> implements ICriteriaPerson, IC
 	
 	
 	
+	public ArrayList<Document> getDocuments() {
+		return documents;
+	}
+
+	public void setDocuments(ArrayList<Document> documents) {
+		this.documents = documents;
+	}
+
 	public void setStudents(ArrayList<Person> students) {
 		this.students = students;
 	}

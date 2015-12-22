@@ -127,9 +127,22 @@ public class AddExamEventFrame extends JDialog{
 		
 		//Choix des documents
 		centre.add(new JLabel(ApplicationSession.instance().getString("documents") + " : "));
-		JButton documents = new JButton(ApplicationSession.instance().getString("choosedocuments"));
-		documents.setEnabled(false);
-		documents.setText(ApplicationSession.instance().getString("notimplemented"));
+		final JButton documents;
+		if(exam.getDocuments()==(null)){
+			 documents = new JButton(ApplicationSession.instance().getString("choosedocuments"));
+		}
+		else{
+			documents = new JButton(exam.getDocuments().size() + " " + ApplicationSession.instance().getString("documents"));
+		}
+		documents.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				DocumentChoiceDialog dialog = new DocumentChoiceDialog(AddExamEventFrame.this,documents,exam);		
+			}			
+		});
+		
+		
 		centre.add(documents);
 		
 		this.add(centre, BorderLayout.CENTER);

@@ -21,7 +21,7 @@ import edu.iut.app.Person;
 import edu.iut.app.Person.PersonFunction;
 
 /**
- * <b>JuryChoiceDialog est la classe graphique permettant de choisir les différents juris associés à une soutenance.</b>
+ * <b>JuryChoiceDialog est la classe graphique permettant de choisir les diffï¿½rents juris associï¿½s ï¿½ une soutenance.</b>
  */
 public class JuryChoiceDialog extends JDialog{
 
@@ -126,7 +126,7 @@ public class JuryChoiceDialog extends JDialog{
 						listeMembre.add(unJury);
 					}
 				}
-				for (Person jurytest : listeMembre)System.out.println(jurytest.toString()); 
+				
 				exam.setJury(listeMembre);
 				CloseDialog();		
 			}			

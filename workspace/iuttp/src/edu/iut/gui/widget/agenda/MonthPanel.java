@@ -15,6 +15,7 @@ import javax.swing.JPanel;
 import javax.swing.border.TitledBorder;
 
 import edu.iut.app.ApplicationSession;
+import edu.iut.gui.listeners.DayClickListener;
 import edu.iut.gui.widget.agenda.AgendaPanelFactory.ActiveView;
 import edu.iut.gui.widget.agenda.WeekPanel.WeekDayNames;
 
@@ -44,6 +45,7 @@ public class MonthPanel extends EventPanel {
 				
 			day.setForeground(Color.WHITE);
 			day.setFont(new Font("Calibri",Font.PLAIN,20));
+			
 				
 			dayPanel.add(day);
 			daysOfWeek.add(dayPanel);
@@ -62,6 +64,12 @@ public class MonthPanel extends EventPanel {
 			day.setBorder(new TitledBorder(dayname));
 			daysOfMonth.setBackground(new Color(230,240,255));
 			day.setBackground(new Color(230,240,255));
+			
+			//J'ajoute le listener avec un jour de retard car la création du DayPanel a décalé la date de 1 jour
+			Calendar c = Calendar.getInstance();
+			c.setTime(ApplicationSession.instance().getDateSelected().getTime());
+			c.add(Calendar.DAY_OF_MONTH, -1);
+			day.addMouseListener(new DayClickListener(c.getTime()));	
 			daysOfMonth.add(day);
 		}
 		

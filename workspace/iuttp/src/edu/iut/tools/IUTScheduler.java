@@ -8,6 +8,7 @@ import edu.iut.app.Agenda;
 import edu.iut.app.ApplicationSession;
 import edu.iut.app.CommandLineOption;
 import edu.iut.app.CommandLineParser;
+import edu.iut.app.Document;
 import edu.iut.gui.frames.SchedulerFrame;
 import edu.iut.io.XMLProjectReader;
 

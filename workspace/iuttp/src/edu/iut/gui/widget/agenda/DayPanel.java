@@ -30,6 +30,7 @@ import edu.iut.app.ExamEvent;
 import edu.iut.app.Person;
 import edu.iut.gui.listeners.DayClickListener;
 import edu.iut.gui.listeners.HourClickListener;
+import edu.iut.gui.listeners.MonthTransferHandler;
 import edu.iut.gui.widget.agenda.AgendaPanelFactory.ActiveView;
 import edu.iut.gui.widget.agenda.WeekPanel.WeekDayNames;
 
@@ -82,17 +83,27 @@ public class DayPanel extends EventPanel {
 					if(activeView==ActiveView.DAY_VIEW){
 						exam.setText(ApplicationSession.instance().getString("student") 
 								+ " : " 
-								+ exam.getText()
-								+ " | "
-								+ ApplicationSession.instance().getString("jury") + " : ");
+								+ exam.getText());
 						if(examDate.getFirst().getJury()!=null){
-							for(Person p : examDate.getFirst().getJury()){
-								exam.setText(exam.getText() + p.toString());
-								if (examDate.getFirst().getJury().lastIndexOf(p)!=examDate.getFirst().getJury().size()-1){
-									exam.setText(exam.getText()	+ " - ");
+							if(!examDate.getFirst().getJury().isEmpty()){
+								exam.setText(exam.getText()
+										+ " | "
+										+ ApplicationSession.instance().getString("jury") + " : ");
+								for(Person p : examDate.getFirst().getJury()){
+									exam.setText(exam.getText() + p.toString());
+									if (examDate.getFirst().getJury().lastIndexOf(p)!=examDate.getFirst().getJury().size()-1){
+										exam.setText(exam.getText()	+ " - ");
+									}
 								}
-								
 							}
+						}
+						if(examDate.getFirst().getClassroom()!=null){
+							exam.setText(exam.getText()
+									+ " | "
+									+ ApplicationSession.instance().getString("classroom")
+									+ " : "
+									+ examDate.getFirst().getClassroom().getClassRoomNumber());
+							
 						}
 						
 					}
@@ -113,8 +124,8 @@ public class DayPanel extends EventPanel {
 			}
 			break;
 		case MONTH_VIEW:
-			JPanel hour = new JPanel();
-			day = new JLabel();
+			JPanel hour = new JPanel(new GridLayout(0,1));
+			day = new JLabel("");
 			
 			Calendar c = Calendar.getInstance();
 			c.setTime(ApplicationSession.instance().getDateSelected().getTime());
@@ -133,19 +144,24 @@ public class DayPanel extends EventPanel {
 			
 			LinkedList<ExamEvent> beforeDate = ApplicationSession.instance().getAgenda().meetCriteriaDateBefore(d);
 			afterDate.retainAll(beforeDate);
-			day.setText(day.getText() + "<html>");
+			
 			Collections.sort(afterDate);
 			
-			for(ExamEvent exam : afterDate){
-				c.setTime(exam.getExamDate());
-				day.setText(day.getText() + c.get(Calendar.HOUR_OF_DAY) + "h : " + exam.getStudent().toString() + "<br>");
+			if(!afterDate.isEmpty()){
+				for(ExamEvent exam : afterDate){
+					day = new JLabel();
+					c.setTime(exam.getExamDate());
+					MonthTransferHandler listener = new MonthTransferHandler(c.getTime());
+					day.addMouseMotionListener(listener);
+					day.setTransferHandler(listener);
+					day.setText(day.getText() + c.get(Calendar.HOUR_OF_DAY) + "h : " + exam.getStudent().toString());
+					hour.add(day);
+				}
 			}
-			day.setText(day.getText() + "</html>");
+			
 			
 			hour.setBackground(new Color(230,240,255));
 			
-			hour.add(day);
-			//hour.addMouseListener(new DayClickListener(ApplicationSession.instance().getDateSelected().getTime()));
 			ApplicationSession.instance().getDateSelected().add(Calendar.DAY_OF_MONTH, 1);
 			this.add(hour);
 		

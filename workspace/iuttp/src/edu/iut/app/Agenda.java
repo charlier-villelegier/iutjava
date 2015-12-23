@@ -13,11 +13,12 @@ import edu.iut.app.Person.PersonFunction;
  * @see ExamEvent
  * @see Person
  */
-public class Agenda extends LinkedList<ExamEvent> implements ICriteriaPerson, ICriteriaDocument, ICriteriaDate {
+public class Agenda extends LinkedList<ExamEvent> implements ICriteriaPerson, ICriteriaDocument, ICriteriaDate, ICriteriaClassroom {
 	
 	protected ArrayList<Person> students;
 	protected ArrayList<Person> jurys;
 	protected ArrayList<Document> documents;
+	protected ArrayList<Classroom> classrooms;
 	
 	/**
 	 * Constructeur vide Agenda
@@ -29,6 +30,7 @@ public class Agenda extends LinkedList<ExamEvent> implements ICriteriaPerson, IC
 		students = new ArrayList<Person>();
 		jurys = new ArrayList<Person>();
 		documents = new ArrayList<Document>();
+		classrooms = new ArrayList<Classroom>();
 	}
 	
 	/**
@@ -70,11 +72,21 @@ public class Agenda extends LinkedList<ExamEvent> implements ICriteriaPerson, IC
 	public ArrayList<Person> getJurys() {
 		return jurys;
 	}
+	
+	
+	public ArrayList<Classroom> getClassrooms() {
+		return classrooms;
+	}
+
+	public void setClassrooms(ArrayList<Classroom> classrooms) {
+		this.classrooms = classrooms;
+	}
 
 /**Critères implémentés**/
 	
 	//Person
-	
+
+
 	/**
 	 * Retourne une liste d'ExamEvent qui contiennent le pr�nom pass� en param�tre selon sa fonction.
 	 * 
@@ -233,17 +245,18 @@ public class Agenda extends LinkedList<ExamEvent> implements ICriteriaPerson, IC
 	 * @see Document
 	 */
 	@Override
-	public LinkedList<ExamEvent> meetCriteriaURI(String uri) {
-		LinkedList<ExamEvent> goodURIEvents = new LinkedList<>();
-		
+	public LinkedList<ExamEvent> meetCriteriaDoc(Document doc) {
+		LinkedList<ExamEvent> goodDocEvents = new LinkedList<>();
 		for (ExamEvent exam : this) {
-			for (Document doc : exam.getDocuments()) {
-				if(doc.getDocumentURI().contains(uri)){
-					goodURIEvents.add(exam);
+			if(exam.getDocuments()!=null){
+				for (Document document : exam.getDocuments()) {
+					if(document==doc){
+						if(!goodDocEvents.contains(exam))goodDocEvents.add(exam);
+					}
 				}
 			}
 		}
-		return goodURIEvents;
+		return goodDocEvents;
 	}
 
 	
@@ -307,6 +320,45 @@ public class Agenda extends LinkedList<ExamEvent> implements ICriteriaPerson, IC
 		}
 		
 		return dateEqual;
+	}
+
+	@Override
+	public LinkedList<ExamEvent> meetCriteriaStudent(Person student) {
+		LinkedList<ExamEvent> studentEqual = new LinkedList<>();
+		for (ExamEvent exam : this) {
+			if(exam.getStudent()==student){
+				studentEqual.add(exam);
+			}
+		}
+		return studentEqual;
+	}
+
+	@Override
+	public LinkedList<ExamEvent> meetCriteriaJury(Person jury) {
+		LinkedList<ExamEvent> juryEqual = new LinkedList<>();
+		for (ExamEvent exam : this) {
+			if(exam.getJury()!=null){
+				for(Person jur : exam.getJury()){
+					if(jur==jury){
+						if(!juryEqual.contains(exam))juryEqual.add(exam);
+					}
+				}
+			}
+		}
+		return juryEqual;
+	}
+
+	@Override
+	public LinkedList<ExamEvent> meetCriteriaClassroom(Classroom room) {
+		LinkedList<ExamEvent> goodClassroomEvents = new LinkedList<>();
+		for (ExamEvent exam : this) {
+			if(exam.getClassroom()!=null){
+				if(exam.getClassroom()==room){
+					if(!goodClassroomEvents.contains(exam))goodClassroomEvents.add(exam);
+				}
+			}
+		}
+		return goodClassroomEvents;
 	}
 
 }

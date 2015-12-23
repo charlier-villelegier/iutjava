@@ -1,11 +1,17 @@
 package edu.iut.gui.widget.agenda;
 
+import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.util.ArrayList;
 import java.util.Calendar;
 
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JSpinner;
 import javax.swing.JPanel;
@@ -15,6 +21,7 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 import edu.iut.app.ApplicationSession;
+import edu.iut.app.Document;
 
 public class ControlAgendaViewPanel extends JPanel {
 
@@ -30,12 +37,13 @@ public class ControlAgendaViewPanel extends JPanel {
 		this.agendaViewLayout = layerLayout;
 		this.contentPane = contentPane;
 		
-		/** EX3: REMPLACEMENT DU BOUTON NEXT */
 		final Calendar c = Calendar.getInstance();
 		Calendar actualCalendar = Calendar.getInstance();
 		c.setFirstDayOfWeek(Calendar.MONDAY);
 		
 		int actualYear = c.get(Calendar.YEAR);
+		JPanel mainPanel = new JPanel(new BorderLayout());
+		JPanel eastPanel = new JPanel(new GridLayout(1,2));
 		JPanel panelDate = new JPanel(new GridLayout(1,3));
 		
 		final JComboBox<String> day = new JComboBox<String>();
@@ -109,7 +117,55 @@ public class ControlAgendaViewPanel extends JPanel {
 		panelDate.add(month);
 		panelDate.add(day);
 		
-		this.add(panelDate);
+		JButton next = new JButton(">>");
+		next.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				switch(ApplicationSession.instance().getActualView()){
+					case DAY_VIEW:
+						ApplicationSession.instance().getDateSelected().add(Calendar.DAY_OF_MONTH, 1);
+						break;
+					case WEEK_VIEW:
+						ApplicationSession.instance().getDateSelected().add(Calendar.WEEK_OF_YEAR, 1);
+						break;
+					case MONTH_VIEW:
+						ApplicationSession.instance().getDateSelected().add(Calendar.MONTH, 1);
+						break;
+				}
+				ApplicationSession.instance().getMyFrame().majView();
+			}			
+		});
+		
+		JButton previous = new JButton("<<");
+		previous.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				switch(ApplicationSession.instance().getActualView()){
+					case DAY_VIEW:
+						ApplicationSession.instance().getDateSelected().add(Calendar.DAY_OF_MONTH, -1);
+						break;
+					case WEEK_VIEW:
+						ApplicationSession.instance().getDateSelected().add(Calendar.WEEK_OF_YEAR, -1);
+						break;
+					case MONTH_VIEW:
+						ApplicationSession.instance().getDateSelected().add(Calendar.MONTH, -1);
+						break;
+				}
+				ApplicationSession.instance().getMyFrame().majView();
+			}			
+		});
+		
+		eastPanel.add(previous);
+		eastPanel.add(next);
+		
+		
+		
+		mainPanel.add(panelDate, BorderLayout.CENTER);
+		mainPanel.add(eastPanel, BorderLayout.EAST);
+		
+		this.add(mainPanel);
 		
 		}
 	

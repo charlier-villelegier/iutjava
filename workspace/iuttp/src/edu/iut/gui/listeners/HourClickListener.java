@@ -2,6 +2,14 @@ package edu.iut.gui.listeners;
 
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Cursor;
+import java.awt.Font;
+import java.awt.FontMetrics;
+import java.awt.Graphics2D;
+import java.awt.Image;
+import java.awt.Point;
+import java.awt.RenderingHints;
+import java.awt.Toolkit;
 import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.StringSelection;
 import java.awt.datatransfer.Transferable;
@@ -11,10 +19,13 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
 import java.util.Date;
 import java.util.LinkedList;
 
+import javax.imageio.ImageIO;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JMenuItem;
@@ -42,42 +53,111 @@ public class HourClickListener extends TransferHandler implements MouseListener,
 	
 	@Override
 	public void mouseClicked(MouseEvent e) {
+
 		final LinkedList<ExamEvent> examDate = ApplicationSession.instance().getAgenda().meetCriteriaDateEqual(this.date);
 		if(!examDate.isEmpty()){
-			JPopupMenu menu = new JPopupMenu();
-			
-			
-			JMenuItem modif = new JMenuItem(ApplicationSession.instance().getString("edit"));
-			modif.addActionListener(new ActionListener() {
+			if(SwingUtilities.isRightMouseButton(e)){
+				JPopupMenu menu = new JPopupMenu();
+				
+				
+				JMenuItem modif = new JMenuItem(ApplicationSession.instance().getString("edit"));
+				modif.addActionListener(new ActionListener() {
 
-				@Override
-				public void actionPerformed(ActionEvent arg0) {
-					AddExamEventFrame dialog = new AddExamEventFrame(HourClickListener.this.date);
-				}			
-			});
-			
-			
-			JMenuItem delete = new JMenuItem(ApplicationSession.instance().getString("delete"));
-			delete.addActionListener(new ActionListener() {
+					@Override
+					public void actionPerformed(ActionEvent arg0) {
+						AddExamEventFrame dialog = new AddExamEventFrame(HourClickListener.this.date);
+					}			
+				});
+				
+				
+				JMenuItem delete = new JMenuItem(ApplicationSession.instance().getString("delete"));
+				delete.addActionListener(new ActionListener() {
 
-				@Override
-				public void actionPerformed(ActionEvent arg0) {
-					if(JOptionPane.showConfirmDialog (container, ApplicationSession.instance().getString("deletemessage"),"Confirmation",JOptionPane.YES_NO_OPTION)==JOptionPane.YES_NO_OPTION){
-						ApplicationSession.instance().getAgenda().remove(examDate.getFirst());
-						ApplicationSession.instance().getMyFrame().majView();
-					}
-					
-				}			
-			});
+					@Override
+					public void actionPerformed(ActionEvent arg0) {
+						if(JOptionPane.showConfirmDialog (container, ApplicationSession.instance().getString("deletemessage"),"Confirmation",JOptionPane.YES_NO_OPTION)==JOptionPane.YES_NO_OPTION){
+							ApplicationSession.instance().getAgenda().remove(examDate.getFirst());
+							ApplicationSession.instance().getMyFrame().majView();
+						}
+						
+					}			
+				});
+				
+				JMenuItem move = new JMenuItem(ApplicationSession.instance().getString("move"));
+				move.addActionListener(new ActionListener() {
+
+					@Override
+					public void actionPerformed(ActionEvent arg0) {
+						Toolkit toolkit = Toolkit.getDefaultToolkit();
+						
+						String student = examDate.getFirst().getStudent().toString();
+
+				        BufferedImage img = new BufferedImage(1, 1, BufferedImage.TYPE_INT_ARGB);
+				        Graphics2D g2d = img.createGraphics();
+				        Font font = new Font("Arial", Font.PLAIN, 20);
+				        g2d.setFont(font);
+				        FontMetrics fm = g2d.getFontMetrics();
+				        int width = fm.stringWidth(student)+20;
+				        int height = fm.getHeight();
+				        g2d.dispose();
+
+				        img = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
+				        g2d = img.createGraphics();
+				        g2d.setRenderingHint(RenderingHints.KEY_ALPHA_INTERPOLATION, RenderingHints.VALUE_ALPHA_INTERPOLATION_QUALITY);
+				        g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+				        g2d.setRenderingHint(RenderingHints.KEY_COLOR_RENDERING, RenderingHints.VALUE_COLOR_RENDER_QUALITY);
+				        g2d.setRenderingHint(RenderingHints.KEY_DITHERING, RenderingHints.VALUE_DITHER_ENABLE);
+				        g2d.setRenderingHint(RenderingHints.KEY_FRACTIONALMETRICS, RenderingHints.VALUE_FRACTIONALMETRICS_ON);
+				        g2d.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
+				        g2d.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
+				        g2d.setRenderingHint(RenderingHints.KEY_STROKE_CONTROL, RenderingHints.VALUE_STROKE_PURE);
+				        g2d.setFont(font);
+				        fm = g2d.getFontMetrics();
+				        g2d.setColor(Color.BLACK);
+				        BufferedImage image = null;
+				        try {
+				            image = ImageIO.read(new File("cursor.png"));
+				        } catch (IOException ex) {
+				        }	
+				        g2d.drawImage(image,0,0,16,16,ApplicationSession.instance().getMyFrame());
+				        g2d.drawString(student, 16, 16);
+				        g2d.dispose();
+				        
+				        
+						Cursor c = toolkit.createCustomCursor(img , new Point(0,0), "img");
+						
+						
+						ApplicationSession.instance().getMyFrame().setCursor(c);
+						DragDropEventTool.movingExam=examDate.getFirst();
+						
+						
+					}			
+				});
+				
+				menu.add(modif);
+				menu.add(move);
+				menu.addSeparator();
+				menu.add(delete);
+				
+				
+				menu.show(this.container, e.getX(), e.getY());
+			}
 			
-			menu.add(modif);
-			menu.add(delete);
-			
-			menu.show(this.container, e.getX(), e.getY());
 		}
 		else{
-			AddExamEventFrame dialog = new AddExamEventFrame(this.date);				
+			if(DragDropEventTool.movingExam==null){
+				AddExamEventFrame dialog = new AddExamEventFrame(this.date);
+			}
+			else{
+				DragDropEventTool.destination=this.date;
+				DragDropEventTool.moveExam();
+				ApplicationSession.instance().getMyFrame().setCursor(new Cursor(Cursor.DEFAULT_CURSOR));;
+				ApplicationSession.instance().getMyFrame().majView();
+			}
 		}
+			
+		
+		
 	}
 
 	@Override
@@ -185,6 +265,7 @@ public class HourClickListener extends TransferHandler implements MouseListener,
 		    
 		    //Je retiens la date de destination et je swap les soutenances;
 		    HourClickListener destListener = (HourClickListener) c.getMouseListeners()[0];
+		    
 		    DragDropEventTool.source = destListener.date;
 		    DragDropEventTool.swap();
 		    

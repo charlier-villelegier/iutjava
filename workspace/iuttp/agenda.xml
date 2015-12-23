@@ -3,80 +3,19 @@
  <object class="edu.iut.app.Agenda">
   <void method="add">
    <object class="edu.iut.app.ExamEvent">
-    <void property="examDate">
-     <object class="java.util.Date">
-      <long>1449680400000</long>
-     </object>
-    </void>
-    <void property="jury">
-     <object class="java.util.ArrayList">
-      <void method="add">
-       <object class="edu.iut.app.Person" id="Person0">
-        <void property="email">
-         <string>helene.maynard@u-psud.fr</string>
-        </void>
-        <void property="firstname">
-         <string>Hélène</string>
-        </void>
-        <void property="function">
-         <object class="java.lang.Enum" id="Person$PersonFunction0" method="valueOf">
-          <class>edu.iut.app.Person$PersonFunction</class>
-          <string>JURY</string>
-         </object>
-        </void>
-        <void property="lastname">
-         <string>Maynard</string>
-        </void>
-        <void property="phone">
-         <string>0611223344</string>
-        </void>
-       </object>
-      </void>
-     </object>
-    </void>
-    <void property="student">
-     <object class="edu.iut.app.Person" id="Person1">
-      <void property="email">
-       <string>leo.charlier@u-psud.fr</string>
-      </void>
-      <void property="firstname">
-       <string>Léo</string>
-      </void>
-      <void property="function">
-       <object class="java.lang.Enum" id="Person$PersonFunction1" method="valueOf">
-        <class>edu.iut.app.Person$PersonFunction</class>
-        <string>STUDENT</string>
-       </object>
-      </void>
-      <void property="lastname">
-       <string>Charlier</string>
-      </void>
-      <void property="phone">
-       <string>0611223344</string>
-      </void>
-     </object>
-    </void>
-   </object>
-  </void>
-  <void method="add">
-   <object class="edu.iut.app.ExamEvent">
     <void property="documents">
      <object class="java.util.ArrayList"/>
     </void>
     <void property="examDate">
      <object class="java.util.Date">
-      <long>1449568800000</long>
+      <long>1450875600000</long>
      </object>
     </void>
     <void property="jury">
-     <object class="java.util.ArrayList">
-      <void method="add">
-       <object idref="Person0"/>
-      </void>
-     </object>
+     <object class="java.util.ArrayList"/>
     </void>
     <void property="student">
-     <object class="edu.iut.app.Person" id="Person2">
+     <object class="edu.iut.app.Person" id="Person0">
       <void property="email">
        <string>xavier.villelegier@u-psud.fr</string>
       </void>
@@ -84,7 +23,10 @@
        <string>Xavier</string>
       </void>
       <void property="function">
-       <object idref="Person$PersonFunction1"/>
+       <object class="java.lang.Enum" id="Person$PersonFunction0" method="valueOf">
+        <class>edu.iut.app.Person$PersonFunction</class>
+        <string>STUDENT</string>
+       </object>
       </void>
       <void property="lastname">
        <string>Villelégier</string>
@@ -107,125 +49,100 @@
         </void>
        </object>
       </void>
-      <void method="add">
-       <object class="edu.iut.app.Document" id="Document1">
-        <void property="documentURI">
-         <string>Fiche d&apos;appreciation de l&apos;entreprise</string>
-        </void>
-       </object>
-      </void>
      </object>
     </void>
     <void property="examDate">
      <object class="java.util.Date">
-      <long>1449583200000</long>
+      <long>1450868400000</long>
      </object>
     </void>
     <void property="jury">
      <object class="java.util.ArrayList">
       <void method="add">
-       <object class="edu.iut.app.Person" id="Person3">
+       <object class="edu.iut.app.Person" id="Person1">
         <void property="email">
-         <string>nicolas.ferey@u-psud.fr</string>
+         <string>dfgbhn,</string>
         </void>
         <void property="firstname">
-         <string>Nicolas</string>
+         <string>Helene</string>
         </void>
         <void property="function">
-         <object idref="Person$PersonFunction0"/>
+         <object class="java.lang.Enum" id="Person$PersonFunction1" method="valueOf">
+          <class>edu.iut.app.Person$PersonFunction</class>
+          <string>JURY</string>
+         </object>
         </void>
         <void property="lastname">
-         <string>Ferey</string>
+         <string>Maynard</string>
         </void>
         <void property="phone">
-         <string>0611223344</string>
+         <string>xcvbn</string>
         </void>
        </object>
-      </void>
-      <void method="add">
-       <object idref="Person0"/>
       </void>
      </object>
     </void>
     <void property="student">
-     <object class="edu.iut.app.Person" id="Person4">
+     <object class="edu.iut.app.Person" id="Person2">
       <void property="email">
-       <string>tyui</string>
+       <string>ghj</string>
       </void>
       <void property="firstname">
-       <string>Clément</string>
+       <string>Léo</string>
       </void>
       <void property="function">
-       <object idref="Person$PersonFunction1"/>
+       <object idref="Person$PersonFunction0"/>
       </void>
       <void property="lastname">
-       <string>Condette</string>
+       <string>Charlier</string>
       </void>
       <void property="phone">
-       <string>yuio</string>
+       <string>vbn</string>
       </void>
      </object>
     </void>
    </object>
   </void>
+  <void property="classrooms">
+   <void method="add">
+    <object class="edu.iut.app.Classroom"/>
+   </void>
+  </void>
   <void property="documents">
    <void method="add">
     <object idref="Document0"/>
    </void>
-   <void method="add">
-    <object class="edu.iut.app.Document">
-     <void property="documentURI">
-      <string>Fiche d&apos;avis du stage</string>
-     </void>
-    </object>
-   </void>
-   <void method="add">
-    <object idref="Document1"/>
-   </void>
-   <void method="add">
-    <object class="edu.iut.app.Document">
-     <void property="documentURI">
-      <string>Compte rendu de visite de stage</string>
-     </void>
-    </object>
-   </void>
   </void>
   <void property="jurys">
    <void method="add">
-    <object idref="Person3"/>
-   </void>
-   <void method="add">
-    <object idref="Person0"/>
+    <object idref="Person1"/>
    </void>
    <void method="add">
     <object class="edu.iut.app.Person">
      <void property="email">
-      <string>julien.tourille@u-psud.fr</string>
+      <string>cvbn</string>
      </void>
      <void property="firstname">
       <string>Julien</string>
      </void>
      <void property="function">
-      <object idref="Person$PersonFunction0"/>
+      <object idref="Person$PersonFunction1"/>
      </void>
      <void property="lastname">
       <string>Tourille</string>
      </void>
      <void property="phone">
-      <string>0611223344</string>
+      <string>rt</string>
      </void>
     </object>
    </void>
   </void>
   <void property="students">
    <void method="add">
-    <object idref="Person1"/>
+    <object idref="Person0"/>
    </void>
    <void method="add">
     <object idref="Person2"/>
-   </void>
-   <void method="add">
-    <object idref="Person4"/>
    </void>
   </void>
  </object>

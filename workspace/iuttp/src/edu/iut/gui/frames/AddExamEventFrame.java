@@ -53,14 +53,6 @@ public class AddExamEventFrame extends JDialog{
 			
 		}
 		
-		//Listener Not implemented
-		ActionListener notImplemented = new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				JOptionPane.showMessageDialog(null,ApplicationSession.instance().getString("notimplemented"));				
-			}			
-		};
 	
 		
 		//Initialisation de la date avec l'internationnalisation
@@ -121,8 +113,20 @@ public class AddExamEventFrame extends JDialog{
 		
 		//Choix de la salle
 		centre.add(new JLabel(ApplicationSession.instance().getString("classroom") + " : "));
-		JComboBox classroom = new JComboBox();
-		classroom.addActionListener(notImplemented);
+		final JButton classroom;
+		if(exam.getClassroom()==(null)){
+			classroom = new JButton(ApplicationSession.instance().getString("chooseclassroom"));
+		}
+		else{
+			classroom = new JButton(exam.getClassroom().getClassRoomNumber());
+		}
+		classroom.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				ClassroomChoiceDialog dialog = new ClassroomChoiceDialog(AddExamEventFrame.this,classroom,exam);		
+			}			
+		});
 		centre.add(classroom);
 		
 		//Choix des documents
@@ -155,10 +159,16 @@ public class AddExamEventFrame extends JDialog{
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				if(!existingExam.isEmpty())ApplicationSession.instance().getAgenda().remove(exam);
-				ApplicationSession.instance().getAgenda().add(exam);
-				ApplicationSession.instance().getMyFrame().majView();
-				CloseDialog();
+				if(exam.getStudent()!=null){
+					if(!existingExam.isEmpty())ApplicationSession.instance().getAgenda().remove(exam);
+					ApplicationSession.instance().getAgenda().add(exam);
+					ApplicationSession.instance().getMyFrame().majView();
+					CloseDialog();
+				}
+				else{
+					JOptionPane.showMessageDialog(null, ApplicationSession.instance().getString("choosestudent"), "Message", JOptionPane.ERROR_MESSAGE);
+				}
+				
 			}			
 		});
 		sud.add(ajouter);

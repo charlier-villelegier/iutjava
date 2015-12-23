@@ -4,5 +4,5 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 
 public interface ICriteriaDocument {
-	public LinkedList<ExamEvent> meetCriteriaURI(String URI);
+	public LinkedList<ExamEvent> meetCriteriaDoc(Document doc);
 }

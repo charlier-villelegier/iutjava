@@ -130,6 +130,18 @@ public class SchedulerFrame extends JFrame {
 		sousMenuItem.add(menuItem);
 		
 		menu.add(sousMenuItem);
+		menu.addSeparator();
+		
+		menuItem=new JMenuItem("Gestionnaire");
+		menuItem.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				RessourceManagerFrame managerFrame = new RessourceManagerFrame();
+			}			
+		});
+		
+		menu.add(menuItem);
 		
 		menuBar.add(menu);
 		
@@ -166,6 +178,7 @@ public class SchedulerFrame extends JFrame {
 		weekView = null;
 		monthView = null;
 		agendaPanelFactory = null;
+		ApplicationSession.instance().setMyFrame(this);
 		setupUI();
 
 	}
@@ -178,6 +191,7 @@ public class SchedulerFrame extends JFrame {
 				System.exit(0);
 			}
 		});
+		ApplicationSession.instance().setMyFrame(this);
 		setupUI();
 	}
 	
@@ -187,6 +201,7 @@ public class SchedulerFrame extends JFrame {
 		contentPane.add(agendaPanelFactory.getAgendaView(ActiveView.WEEK_VIEW),ActiveView.WEEK_VIEW.name());
 		contentPane.add(agendaPanelFactory.getAgendaView(ActiveView.MONTH_VIEW),ActiveView.MONTH_VIEW.name());
 		layerLayout.show(contentPane,actualView.name());
+		
 	}
 	
 }

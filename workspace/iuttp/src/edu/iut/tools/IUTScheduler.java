@@ -55,7 +55,6 @@ public class IUTScheduler {
 		SwingUtilities.invokeLater(new Runnable() {
 		    public void run() {
 		        SchedulerFrame mainFrame = new edu.iut.gui.frames.SchedulerFrame("IUT Scheduler");
-		        ApplicationSession.instance().setMyFrame(mainFrame);
 		        mainFrame.setVisible(true);		        
 		    }
 		});

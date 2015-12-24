@@ -44,9 +44,11 @@ public class IUTScheduler {
 		
 		commandLineParser.parse(args);
 		
+		ApplicationSession.instance().setCommandLineParser(commandLineParser);
+		
 		XMLProjectReader xmlreader = new XMLProjectReader();
 		try {
-			ApplicationSession.instance().setAgenda((Agenda) xmlreader.load(new File(commandLineParser.getOption("project").getValue().toString())));
+			ApplicationSession.instance().setAgenda((Agenda)xmlreader.load(new File(commandLineParser.getOption("project").getValue().toString())));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

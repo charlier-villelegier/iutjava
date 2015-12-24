@@ -56,6 +56,13 @@ public class HourClickListener extends TransferHandler implements MouseListener,
 
 		final LinkedList<ExamEvent> examDate = ApplicationSession.instance().getAgenda().meetCriteriaDateEqual(this.date);
 		if(!examDate.isEmpty()){
+			//Si on reclique sur la soutenance que l'on déplace on annule le déplacement
+			if(examDate.getFirst()==DragDropEventTool.movingExam){
+				DragDropEventTool.movingExam=null;
+				ApplicationSession.instance().getMyFrame().setCursor(new Cursor(Cursor.DEFAULT_CURSOR));;
+			}
+			
+			//Si on clique droit
 			if(SwingUtilities.isRightMouseButton(e)){
 				JPopupMenu menu = new JPopupMenu();
 				
@@ -150,14 +157,11 @@ public class HourClickListener extends TransferHandler implements MouseListener,
 			}
 			else{
 				DragDropEventTool.destination=this.date;
+				ApplicationSession.instance().getMyFrame().setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
 				DragDropEventTool.moveExam();
-				ApplicationSession.instance().getMyFrame().setCursor(new Cursor(Cursor.DEFAULT_CURSOR));;
 				ApplicationSession.instance().getMyFrame().majView();
-			}
+			}		
 		}
-			
-		
-		
 	}
 
 	@Override
@@ -222,7 +226,7 @@ public class HourClickListener extends TransferHandler implements MouseListener,
 		//S'il n'y a rien a déplacer, que les données ne sont pas valides, ou qu'une soutenance est déjà en destination, on annule le drop     
 		try {
 			LinkedList<ExamEvent> examDest = ApplicationSession.instance().getAgenda().meetCriteriaDateEqual(DragDropEventTool.destination);
-			if(!canImport(support) || ((String)support.getTransferable().getTransferData(DataFlavor.stringFlavor)).equals("") || !examDest.isEmpty())
+			if(!canImport(support) || ((String)support.getTransferable().getTransferData(DataFlavor.stringFlavor)).equals(""))
 			  return false;
 		} catch (UnsupportedFlavorException e1) {
 			// TODO Auto-generated catch block

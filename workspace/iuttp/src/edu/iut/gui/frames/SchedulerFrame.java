@@ -8,7 +8,9 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.File;
+import java.io.IOException;
 
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -16,11 +18,15 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSplitPane;
+import javax.swing.filechooser.FileFilter;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
+import edu.iut.app.Agenda;
 import edu.iut.app.ApplicationSession;
 import edu.iut.gui.widget.agenda.AgendaPanelFactory;
 import edu.iut.gui.widget.agenda.ControlAgendaViewPanel;
 import edu.iut.gui.widget.agenda.AgendaPanelFactory.ActiveView;
+import edu.iut.io.XMLProjectReader;
 import edu.iut.io.XMLProjectWriter;
 
 /**
@@ -72,16 +78,47 @@ public class SchedulerFrame extends JFrame {
 		menu = new JMenu(ApplicationSession.instance().getString("file"));
 		
 		menuItem=new JMenuItem(ApplicationSession.instance().getString("load"));
-		menuItem.addActionListener(notImplemented);
+		menuItem.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				JFileChooser fileChooser = new JFileChooser(ApplicationSession.instance().getString("save"));
+				 
+				if (fileChooser.showOpenDialog(SchedulerFrame.this) == JFileChooser.APPROVE_OPTION) {
+				    File fileToLoad = fileChooser.getSelectedFile();
+				    if (fileToLoad.toString().toLowerCase().endsWith("xml")) {
+				    	XMLProjectReader xmlreader = new XMLProjectReader();
+						try {
+							String args[]=new String[1];
+							args[0]= "project="+fileToLoad.toString();
+							ApplicationSession.instance().setAgenda((Agenda)xmlreader.load(fileToLoad));
+							ApplicationSession.instance().getCommandLineParser().parse(args);
+							ApplicationSession.instance().getMyFrame().majView();
+							JOptionPane.showMessageDialog(null,"Loaded");
+						} catch (IOException e) {
+							e.printStackTrace();
+						}
+				    }    
+				}
+			}			
+		});
 		menu.add(menuItem);
 		menuItem=new JMenuItem(ApplicationSession.instance().getString("save"));
 		menuItem.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				XMLProjectWriter xmltools = new XMLProjectWriter();
-				xmltools.save(ApplicationSession.instance().getAgenda(), new File("agenda.xml"));
-				JOptionPane.showMessageDialog(null,"Saved");
+				JFileChooser fileChooser = new JFileChooser(ApplicationSession.instance().getString("save"));
+				 
+				if (fileChooser.showSaveDialog(SchedulerFrame.this) == JFileChooser.APPROVE_OPTION) {
+				    File fileToSave = fileChooser.getSelectedFile();
+				    if (!fileToSave.toString().toLowerCase().endsWith("xml")) {
+				    	fileToSave = new File(fileToSave.toString() + ".xml");
+				    }    
+				    XMLProjectWriter xmltools = new XMLProjectWriter();
+					xmltools.save(ApplicationSession.instance().getAgenda(), fileToSave);
+					JOptionPane.showMessageDialog(null,"Saved");
+				}
 			}			
 		});
 		menu.add(menuItem);
@@ -169,7 +206,7 @@ public class SchedulerFrame extends JFrame {
 		addWindowListener (new WindowAdapter(){
 			public void windowClosing (WindowEvent e){
 				XMLProjectWriter xmltools = new XMLProjectWriter();
-				xmltools.save(ApplicationSession.instance().getAgenda(), new File("agenda.xml"));
+				xmltools.save(ApplicationSession.instance().getAgenda(), new File(ApplicationSession.instance().getCommandLineParser().getOption("project").getValue().toString()));
 				System.exit(0);
 			}
 		});
@@ -187,7 +224,7 @@ public class SchedulerFrame extends JFrame {
 		addWindowListener (new WindowAdapter(){
 			public void windowClosing (WindowEvent e){
 				XMLProjectWriter xmltools = new XMLProjectWriter();
-				xmltools.save(ApplicationSession.instance().getAgenda(), new File("agenda.xml"));
+				xmltools.save(ApplicationSession.instance().getAgenda(), new File(ApplicationSession.instance().getCommandLineParser().getOption("project").getValue().toString()));
 				System.exit(0);
 			}
 		});

@@ -17,7 +17,12 @@ public final class DragDropEventTool {
 			LinkedList<ExamEvent> examToMove = ApplicationSession.instance().getAgenda().meetCriteriaDateEqual(source);
 			LinkedList<ExamEvent> examDest = ApplicationSession.instance().getAgenda().meetCriteriaDateEqual(destination);
 			
-			if(!examToMove.isEmpty() && examDest.isEmpty()){
+			//S'il y a une soutenance la ou on veut déplacer, on interverti les deux
+			if(!examToMove.isEmpty() && !examDest.isEmpty()){
+				examToMove.getFirst().setExamDate(destination);
+				examDest.getFirst().setExamDate(source);
+			}
+			else if(!examToMove.isEmpty() && examDest.isEmpty()){
 				examToMove.getFirst().setExamDate(destination);
 			}
 		}

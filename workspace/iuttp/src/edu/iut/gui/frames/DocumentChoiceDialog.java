@@ -16,6 +16,7 @@ import edu.iut.app.ApplicationSession;
 import edu.iut.app.Document;
 import edu.iut.app.ExamEvent;
 import edu.iut.app.Person;
+import edu.iut.app.Person.PersonFunction;
 
 public class DocumentChoiceDialog extends JDialog{
 
@@ -53,9 +54,9 @@ public class DocumentChoiceDialog extends JDialog{
 		
 		this.add(centre, BorderLayout.CENTER);
 		
-		JPanel south = new JPanel(new GridLayout(1,2));
+		JPanel south = new JPanel();
 		JButton save = new JButton(ApplicationSession.instance().getString("save"));
-		JButton addDoc = new JButton(ApplicationSession.instance().getString("add"));
+		
 		
 		save.addActionListener(new ActionListener() {
 
@@ -79,7 +80,7 @@ public class DocumentChoiceDialog extends JDialog{
 			}			
 		});
 		
-		south.add(addDoc);
+		
 		south.add(save);
 		
 		this.add(south, BorderLayout.SOUTH);

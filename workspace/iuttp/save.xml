@@ -199,7 +199,7 @@
    <object class="edu.iut.app.ExamEvent">
     <void property="examDate">
      <object class="java.util.Date">
-      <long>1450951200000</long>
+      <long>1450954800000</long>
      </object>
     </void>
     <void property="student">

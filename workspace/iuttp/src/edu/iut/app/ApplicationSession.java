@@ -43,6 +43,7 @@ public class ApplicationSession {
 	protected Agenda agenda;
 	protected SchedulerFrame myFrame;
 	protected ActiveView actualView;
+	protected CommandLineParser commandLineParser;
 
 	private static ApplicationSession session = null;
 	
@@ -213,6 +214,14 @@ public class ApplicationSession {
 
 	public void setAgenda(Agenda agenda) {
 		this.agenda = agenda;
+	}
+
+	public CommandLineParser getCommandLineParser() {
+		return commandLineParser;
+	}
+
+	public void setCommandLineParser(CommandLineParser commandLineParser) {
+		this.commandLineParser = commandLineParser;
 	}
 
 	

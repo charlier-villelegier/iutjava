@@ -22,6 +22,7 @@ import javax.swing.event.ChangeListener;
 
 import edu.iut.app.ApplicationSession;
 import edu.iut.app.Document;
+import edu.iut.gui.frames.SearchExamDialog;
 
 public class ControlAgendaViewPanel extends JPanel {
 
@@ -43,8 +44,11 @@ public class ControlAgendaViewPanel extends JPanel {
 		
 		int actualYear = c.get(Calendar.YEAR);
 		JPanel mainPanel = new JPanel(new BorderLayout());
-		JPanel eastPanel = new JPanel(new GridLayout(1,2));
+		JPanel centre = new JPanel(new GridLayout(1,2));
+		JPanel eastPanel = new JPanel(new BorderLayout());
 		JPanel panelDate = new JPanel(new GridLayout(1,3));
+		
+		eastPanel.add(centre, BorderLayout.CENTER);
 		
 		final JComboBox<String> day = new JComboBox<String>();
 		final JComboBox<String> month = new JComboBox<String>(ApplicationSession.instance().getMonths());
@@ -157,8 +161,20 @@ public class ControlAgendaViewPanel extends JPanel {
 			}			
 		});
 		
-		eastPanel.add(previous);
-		eastPanel.add(next);
+		centre.add(previous);
+		centre.add(next);
+		
+		
+		JButton search = new JButton(ApplicationSession.instance().getString("searchexam"));
+		search.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				SearchExamDialog monDialog = new SearchExamDialog();
+			}			
+		});
+		
+		eastPanel.add(search,BorderLayout.EAST);
 		
 		
 		

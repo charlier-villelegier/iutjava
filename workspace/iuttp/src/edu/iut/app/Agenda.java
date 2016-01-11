@@ -105,18 +105,21 @@ public class Agenda extends LinkedList<ExamEvent> implements ICriteriaPerson, IC
 		//Si on demande les jury
 		if(function==PersonFunction.JURY){
 			for (ExamEvent exam : this) {
-				for (Person person : exam.jury) {
-					if(person.getFirstname().contains(firstName)){
-						goodFNameEvents.add(exam);break;
+				if(exam.jury!=null){
+					for (Person person : exam.jury) {
+						if(person.getFirstname().toLowerCase().contains(firstName.toLowerCase())){
+							goodFNameEvents.add(exam);break;
+						}
 					}
 				}
 			}
 		}
-		
 		//Si on demande l'étudiant
-		for (ExamEvent exam : this) {
-			if(exam.getStudent().getFirstname().contains(firstName)){
-				goodFNameEvents.add(exam);
+		else{
+			for (ExamEvent exam : this) {
+				if(exam.getStudent().getFirstname().toLowerCase().contains(firstName.toLowerCase())){
+					goodFNameEvents.add(exam);
+				}
 			}
 		}
 		
@@ -141,20 +144,25 @@ public class Agenda extends LinkedList<ExamEvent> implements ICriteriaPerson, IC
 		//Si on demande les jury
 		if(function==PersonFunction.JURY){
 			for (ExamEvent exam : this) {
-				for (Person person : exam.jury) {
-					if(person.getLastname().contains(lastName)){
-						goodLNameEvents.add(exam);break;
+				if(exam.jury!=null){
+					for (Person person : exam.jury) {
+						if(person.getLastname().toLowerCase().contains(lastName.toLowerCase())){
+							goodLNameEvents.add(exam);break;
+						}
 					}
 				}
 			}
 		}
-		
 		//Si on demande l'étudiant
-		for (ExamEvent exam : this) {
-			if(exam.getStudent().getLastname().contains(lastName)){
-				goodLNameEvents.add(exam);
+		else{
+			for (ExamEvent exam : this) {
+				if(exam.getStudent().getLastname().toLowerCase().contains(lastName.toLowerCase())){
+					goodLNameEvents.add(exam);
+				}
 			}
 		}
+		
+		
 		
 		return goodLNameEvents;
 	}

@@ -2,7 +2,9 @@ package edu.iut.gui.widget.agenda;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Font;
+import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -17,6 +19,7 @@ import javax.swing.border.TitledBorder;
 import edu.iut.app.ApplicationSession;
 import edu.iut.gui.listeners.DayClickListener;
 import edu.iut.gui.listeners.MonthTransferHandler;
+import edu.iut.gui.listeners.WeekClickListener;
 import edu.iut.gui.widget.agenda.AgendaPanelFactory.ActiveView;
 import edu.iut.gui.widget.agenda.WeekPanel.WeekDayNames;
 
@@ -80,18 +83,41 @@ public class MonthPanel extends EventPanel {
 			daysOfMonth.add(new JLabel(""));
 		}
 		
+		//On créer le premier numéro de semaine
 		int numberOfTheWeek = ApplicationSession.instance().getDateSelected().get(Calendar.WEEK_OF_YEAR);
+		JPanel panelNumWeek = new JPanel(new GridBagLayout());
 		JLabel numOneWeek = new JLabel(String.valueOf(numberOfTheWeek));
+		
+		//On formate l'interface
 		numOneWeek.setForeground(Color.GRAY);
-		numberWeek.add(numOneWeek);
+		panelNumWeek.setBackground(new Color(230,240,255));
+		
+		//On ajoute le listener
+		panelNumWeek.addMouseListener(new DayClickListener(ApplicationSession.instance().getDateSelected().getTime()));
+		
+		//On ajoute
+		panelNumWeek.add(numOneWeek);
+		numberWeek.add(panelNumWeek);
 		
 		for (int di = 0;di<ApplicationSession.instance().getDateSelected().getActualMaximum(Calendar.DAY_OF_MONTH);di++) {
 			//Si la semaine a changée, on l'écrit a gauche
 			if(ApplicationSession.instance().getDateSelected().get(Calendar.WEEK_OF_YEAR)!=numberOfTheWeek){
+				//On met a jour le numéro et on créer les composants
 				numberOfTheWeek = ApplicationSession.instance().getDateSelected().get(Calendar.WEEK_OF_YEAR);
+				panelNumWeek = new JPanel(new GridBagLayout());
 				numOneWeek = new JLabel(String.valueOf(numberOfTheWeek));
+				
+				//On formate l'interface
+				panelNumWeek.setBackground(new Color(230,240,255));
 				numOneWeek.setForeground(Color.GRAY);
-				numberWeek.add(numOneWeek);
+				
+				//On ajoute le listener
+				panelNumWeek.addMouseListener(new WeekClickListener(ApplicationSession.instance().getDateSelected().getTime()));
+				
+				//On ajoute
+				panelNumWeek.add(numOneWeek);
+				numberWeek.add(panelNumWeek);
+				
 			}
 			WeekDayNames weekday=WeekDayNames.values()[((ApplicationSession.instance().getDateSelected().get(Calendar.DAY_OF_WEEK)+5)%7)+1];
 			String dayname=weekday.getShortName() + " " + ApplicationSession.instance().getDateSelected().get(Calendar.DAY_OF_MONTH);

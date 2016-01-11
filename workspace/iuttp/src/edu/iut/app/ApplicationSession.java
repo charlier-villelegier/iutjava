@@ -19,7 +19,7 @@ import edu.iut.gui.widget.agenda.AgendaPanelFactory.ActiveView;
  * <p>Une session est caractï¿½risï¿½e par :
  * <ul>
  * <li>Un ressourceBundle</li>
- * <li>Un locale</li>
+ * <li>Une langue (locale)</li>
  * <li>Une sessionGuiLogger</li>
  * <li>Une sessionExceptionLogger</li>
  * <li>La liste des mois de l'annï¿½e</li>
@@ -105,6 +105,7 @@ public class ApplicationSession {
 	
 	/**
 	 * Retourne la sessionGUILogger.
+	 * 
 	 * @return La sessionGUILogger.
 	 */
 	public Logger getGUILogger() {
@@ -113,12 +114,19 @@ public class ApplicationSession {
 	
 	/**
 	 * Retourne la sessionExceptionLogger.
+	 * 
 	 * @return La sessionExceptionLogger.
 	 */
 	public Logger getExceptionLogger() {
 		return sessionExceptionLogger;
 	}
 	
+	/**
+	 * Met à jour la langue par défaut.
+	 * 
+	 * @param locale
+	 * 			La nouvelle langue par défaut.
+	 */
 	public void setLocale(Locale locale){
 		this.locale = locale;
 		Locale.setDefault(this.locale);
@@ -138,6 +146,7 @@ public class ApplicationSession {
 	
 	/**
 	 * Retourne les jours de la semaine.
+	 * 
 	 * @return Une liste des jours de la semaine.
 	 */
 	public String[] getDays() {
@@ -146,17 +155,28 @@ public class ApplicationSession {
 	
 	/**
 	 * Retourne les mois de l'annï¿½e.
+	 * 
 	 * @return Une liste des mois de l'annï¿½e.
 	 */
 	public String[] getMonths() {
 		return months;
 	}
-
+	
+	/**
+	 * Retourne la date du jour sélectionné (jour actif).
+	 * 
+	 * @return La date sélectionnée.
+	 */
 	public Calendar getDateSelected() {
 		return dateSelected;
 	}
 
-
+	/**
+	 * Met à jour la date sélectionnée (active).
+	 * 
+	 * @param dateSelected
+	 * 			La nouvelle date.
+	 */
 	public void setDateSelected(Calendar dateSelected) {
 		this.dateSelected = dateSelected;
 	}
@@ -211,15 +231,32 @@ public class ApplicationSession {
 	public void setActualView(ActiveView actualView) {
 		this.actualView = actualView;
 	}
-
+	
+	/**
+	 * Met à jour l'agenda actif.
+	 * 
+	 * @param agenda
+	 * 			Le nouvel agenda.
+	 */
 	public void setAgenda(Agenda agenda) {
 		this.agenda = agenda;
 	}
-
+	
+	/**
+	 * Retourne le CommandLineParser.
+	 * 
+	 * @return Le CommandLineParser.
+	 */
 	public CommandLineParser getCommandLineParser() {
 		return commandLineParser;
 	}
-
+	
+	/**
+	 * Met à jour le CommandLineParser.
+	 * 
+	 * @param commandLineParser
+	 * 			Le nouveau CommandLineParser.
+	 */
 	public void setCommandLineParser(CommandLineParser commandLineParser) {
 		this.commandLineParser = commandLineParser;
 	}

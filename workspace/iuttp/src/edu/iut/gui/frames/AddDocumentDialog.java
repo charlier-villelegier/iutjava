@@ -18,6 +18,9 @@ import edu.iut.app.Document;
 import edu.iut.app.Person;
 import edu.iut.app.Person.PersonFunction;
 
+/**
+ * <b>AddDocumentDialog est la classe graphique permettant d'ajouter des documents à une soutenance.</b>
+ */
 public class AddDocumentDialog extends JDialog{
 	DefaultListModel<String> documents;
 	

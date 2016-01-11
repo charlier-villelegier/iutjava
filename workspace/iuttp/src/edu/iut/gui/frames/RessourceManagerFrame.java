@@ -30,6 +30,10 @@ import edu.iut.app.Person;
 import edu.iut.app.Person.PersonFunction;
 import edu.iut.gui.widget.agenda.AgendaPanelFactory.ActiveView;
 
+/**
+ * <b>RessourceManagerFrame est la classe graphique permettant de gérer (ajouter/modifier/supprimer)
+ * l'ensemble des données de l'application (étudiants, jurys, etc).</b>
+ */
 public class RessourceManagerFrame extends JDialog{
 
 	public RessourceManagerFrame(){

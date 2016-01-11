@@ -19,6 +19,9 @@ import edu.iut.app.Document;
 import edu.iut.app.Person;
 import edu.iut.app.Person.PersonFunction;
 
+/**
+ * <b>AddClassroomDialog est la classe graphique permettant d'ajouter une salle de classe à une soutenance.</b>
+ */
 public class AddClassroomDialog extends JDialog{
 	DefaultListModel<String> classrooms;
 	

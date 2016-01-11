@@ -48,36 +48,78 @@ public class Agenda extends LinkedList<ExamEvent> implements ICriteriaPerson, IC
 	
 	
 	
-	
+	/**
+	 * Retourne la liste des documents.
+	 * 
+	 * @return La liste des documents.
+	 */
 	public ArrayList<Document> getDocuments() {
 		return documents;
 	}
-
+	
+	/**
+	 * Met à jour la liste des documents.
+	 * 
+	 * @param number
+	 * 			La nouvelle liste de documents.
+	 */
 	public void setDocuments(ArrayList<Document> documents) {
 		this.documents = documents;
 	}
-
+	
+	/**
+	 * Met à jour la liste des étudiants.
+	 * 
+	 * @param number
+	 * 			La nouvelle liste d'étudiants.
+	 */
 	public void setStudents(ArrayList<Person> students) {
 		this.students = students;
 	}
-
+	
+	/**
+	 * Met à jour la liste des jurys.
+	 * 
+	 * @param number
+	 * 			La nouvelle liste de jurys.
+	 */
 	public void setJurys(ArrayList<Person> jurys) {
 		this.jurys = jurys;
 	}
-
+	
+	/**
+	 * Retourne la liste des étudiants.
+	 * 
+	 * @return La liste des étudiants.
+	 */
 	public ArrayList<Person> getStudents() {
 		return students;
 	}
-
+	
+	/**
+	 * Retourne la liste des jurys.
+	 * 
+	 * @return La liste des jurys.
+	 */
 	public ArrayList<Person> getJurys() {
 		return jurys;
 	}
 	
-	
+	/**
+	 * Retourne la liste des salles de classe.
+	 * 
+	 * @return La liste des salles de classe.
+	 */
 	public ArrayList<Classroom> getClassrooms() {
 		return classrooms;
 	}
-
+	
+	/**
+	 * Met à jour la liste des salles de classe.
+	 * 
+	 * @param number
+	 * 			La nouvelle liste de salles de classe.
+	 */
 	public void setClassrooms(ArrayList<Classroom> classrooms) {
 		this.classrooms = classrooms;
 	}
@@ -329,7 +371,15 @@ public class Agenda extends LinkedList<ExamEvent> implements ICriteriaPerson, IC
 		
 		return dateEqual;
 	}
-
+	
+	/**
+	 * Retourne une liste d'ExamEvent qui concernent un étudiant passé en paramètre.
+	 * 
+	 * @param student
+	 * 			L'étudiant souhaité.
+	 * 
+	 * @see ExamEvent
+	 */
 	@Override
 	public LinkedList<ExamEvent> meetCriteriaStudent(Person student) {
 		LinkedList<ExamEvent> studentEqual = new LinkedList<>();
@@ -340,7 +390,15 @@ public class Agenda extends LinkedList<ExamEvent> implements ICriteriaPerson, IC
 		}
 		return studentEqual;
 	}
-
+	
+	/**
+	 * Retourne une liste d'ExamEvent qui concernent un jury passé en paramètre.
+	 * 
+	 * @param jury
+	 * 			Le jury souhaité.
+	 * 
+	 * @see ExamEvent
+	 */
 	@Override
 	public LinkedList<ExamEvent> meetCriteriaJury(Person jury) {
 		LinkedList<ExamEvent> juryEqual = new LinkedList<>();
@@ -355,7 +413,15 @@ public class Agenda extends LinkedList<ExamEvent> implements ICriteriaPerson, IC
 		}
 		return juryEqual;
 	}
-
+	
+	/**
+	 * Retourne une liste d'ExamEvent qui ont lieu dans une salle passé en paramètre.
+	 * 
+	 * @param room
+	 * 			La salle de classe souhaitée.
+	 * 
+	 * @see ExamEvent
+	 */
 	@Override
 	public LinkedList<ExamEvent> meetCriteriaClassroom(Classroom room) {
 		LinkedList<ExamEvent> goodClassroomEvents = new LinkedList<>();

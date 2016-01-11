@@ -18,6 +18,9 @@ import edu.iut.app.ExamEvent;
 import edu.iut.app.Person;
 import edu.iut.app.Person.PersonFunction;
 
+/**
+ * <b>JuryChoiceDialog est la classe graphique permettant de déterminer les différents documents remis pour une soutenance.</b>
+ */
 public class DocumentChoiceDialog extends JDialog{
 
 	JButton docButton;

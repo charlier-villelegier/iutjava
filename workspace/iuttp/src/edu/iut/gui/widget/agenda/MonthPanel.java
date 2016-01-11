@@ -26,6 +26,7 @@ public class MonthPanel extends EventPanel {
 		super(ActiveView.MONTH_VIEW);
 		JPanel daysOfMonth = new JPanel(new GridLayout(0,7));
 		JPanel monthDayWeek = new JPanel(new GridLayout(2,1));
+		JPanel numberWeek = new JPanel(new GridLayout(0,1));
 		
 		JPanel daysOfWeek = new JPanel(new GridLayout(1,7));
 		
@@ -33,6 +34,7 @@ public class MonthPanel extends EventPanel {
 		
 		this.add(daysOfMonth, BorderLayout.CENTER);
 		this.add(monthDayWeek, BorderLayout.NORTH);
+		this.add(numberWeek, BorderLayout.WEST);
 		
 		
 		
@@ -78,7 +80,19 @@ public class MonthPanel extends EventPanel {
 			daysOfMonth.add(new JLabel(""));
 		}
 		
+		int numberOfTheWeek = ApplicationSession.instance().getDateSelected().get(Calendar.WEEK_OF_YEAR);
+		JLabel numOneWeek = new JLabel(String.valueOf(numberOfTheWeek));
+		numOneWeek.setForeground(Color.GRAY);
+		numberWeek.add(numOneWeek);
+		
 		for (int di = 0;di<ApplicationSession.instance().getDateSelected().getActualMaximum(Calendar.DAY_OF_MONTH);di++) {
+			//Si la semaine a changée, on l'écrit a gauche
+			if(ApplicationSession.instance().getDateSelected().get(Calendar.WEEK_OF_YEAR)!=numberOfTheWeek){
+				numberOfTheWeek = ApplicationSession.instance().getDateSelected().get(Calendar.WEEK_OF_YEAR);
+				numOneWeek = new JLabel(String.valueOf(numberOfTheWeek));
+				numOneWeek.setForeground(Color.GRAY);
+				numberWeek.add(numOneWeek);
+			}
 			WeekDayNames weekday=WeekDayNames.values()[((ApplicationSession.instance().getDateSelected().get(Calendar.DAY_OF_WEEK)+5)%7)+1];
 			String dayname=weekday.getShortName() + " " + ApplicationSession.instance().getDateSelected().get(Calendar.DAY_OF_MONTH);
 			MonthTransferHandler listener = new MonthTransferHandler(ApplicationSession.instance().getDateSelected().getTime());

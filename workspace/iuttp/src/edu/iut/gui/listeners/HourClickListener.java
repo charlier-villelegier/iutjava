@@ -149,7 +149,17 @@ public class HourClickListener extends TransferHandler implements MouseListener,
 				
 				menu.show(this.container, e.getX(), e.getY());
 			}
-			
+			else{
+				if(DragDropEventTool.movingExam==null){
+					AddExamEventFrame dialog = new AddExamEventFrame(this.date);
+				}
+				else{
+					DragDropEventTool.destination=this.date;
+					ApplicationSession.instance().getMyFrame().setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+					DragDropEventTool.moveExam();
+					ApplicationSession.instance().getMyFrame().majView();
+				}		
+			}
 		}
 		else{
 			if(DragDropEventTool.movingExam==null){

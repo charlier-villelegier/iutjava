@@ -7,6 +7,7 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.Set;
@@ -71,6 +72,8 @@ public class SearchExamDialog extends JDialog{
 			examModele.addElement(date + " : " + ex.getStudent().toString() + jury);
 		}
 		
+		
+		
 		final JComboBox<String> juryOrStudent = new JComboBox<String>();
 		final JTextField nameText = new JTextField();
 		
@@ -117,6 +120,9 @@ public class SearchExamDialog extends JDialog{
 				hs.addAll(goodExam);
 				goodExam.clear();
 				goodExam.addAll(hs);
+				
+				//On trie par la date
+				Collections.sort(goodExam);
 				
 				//On affiche les bons exam
 				for(ExamEvent ex : goodExam){

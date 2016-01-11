@@ -6,7 +6,7 @@ import java.util.Date;
 
 import edu.iut.app.Person.PersonFunction;
 
-public class ExamEvent implements Comparable{
+public class ExamEvent implements Comparable<ExamEvent>{
 	public ExamEvent() {		
 	}
 	
@@ -68,7 +68,7 @@ public class ExamEvent implements Comparable{
 	}
 
 	@Override
-	public int compareTo(Object o) {
+	public int compareTo(ExamEvent o) {
 		return(this.getExamDate().compareTo(((ExamEvent) o).getExamDate()));
 	}
 

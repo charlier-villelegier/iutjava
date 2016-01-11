@@ -6,7 +6,7 @@
     <void property="classroom">
      <object class="edu.iut.app.Classroom" id="Classroom0">
       <void property="classRoomNumber">
-       <string>I228</string>
+       <string>D005</string>
       </void>
      </object>
     </void>
@@ -23,7 +23,7 @@
     </void>
     <void property="examDate">
      <object class="java.util.Date">
-      <long>1450875600000</long>
+      <long>1450688400000</long>
      </object>
     </void>
     <void property="jury">
@@ -55,16 +55,65 @@
     <void property="student">
      <object class="edu.iut.app.Person" id="Person1">
       <void property="email">
-       <string>ghj</string>
+       <string>xavier.villelegier@u-psud.fr</string>
       </void>
       <void property="firstname">
-       <string>Léo</string>
+       <string>Xavier</string>
       </void>
       <void property="function">
        <object class="java.lang.Enum" id="Person$PersonFunction1" method="valueOf">
         <class>edu.iut.app.Person$PersonFunction</class>
         <string>STUDENT</string>
        </object>
+      </void>
+      <void property="lastname">
+       <string>Villelégier</string>
+      </void>
+      <void property="phone">
+       <string>0611223344</string>
+      </void>
+     </object>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="edu.iut.app.ExamEvent">
+    <void property="classroom">
+     <object class="edu.iut.app.Classroom" id="Classroom1">
+      <void property="classRoomNumber">
+       <string>I228</string>
+      </void>
+     </object>
+    </void>
+    <void property="documents">
+     <object class="java.util.ArrayList">
+      <void method="add">
+       <object idref="Document0"/>
+      </void>
+     </object>
+    </void>
+    <void property="examDate">
+     <object class="java.util.Date">
+      <long>1450864800000</long>
+     </object>
+    </void>
+    <void property="jury">
+     <object class="java.util.ArrayList">
+      <void method="add">
+       <object idref="Person0"/>
+      </void>
+     </object>
+    </void>
+    <void property="student">
+     <object class="edu.iut.app.Person" id="Person2">
+      <void property="email">
+       <string>ghj</string>
+      </void>
+      <void property="firstname">
+       <string>Léo</string>
+      </void>
+      <void property="function">
+       <object idref="Person$PersonFunction1"/>
       </void>
       <void property="lastname">
        <string>Charlier</string>
@@ -78,12 +127,36 @@
   </void>
   <void method="add">
    <object class="edu.iut.app.ExamEvent">
-    <void property="classroom">
-     <object class="edu.iut.app.Classroom" id="Classroom1">
-      <void property="classRoomNumber">
-       <string>D005</string>
+    <void property="examDate">
+     <object class="java.util.Date">
+      <long>1450951200000</long>
+     </object>
+    </void>
+    <void property="student">
+     <object class="edu.iut.app.Person" id="Person3">
+      <void property="email">
+       <string>fvghj</string>
+      </void>
+      <void property="firstname">
+       <string>Johan</string>
+      </void>
+      <void property="function">
+       <object idref="Person$PersonFunction1"/>
+      </void>
+      <void property="lastname">
+       <string>Gras</string>
+      </void>
+      <void property="phone">
+       <string>yu</string>
       </void>
      </object>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="edu.iut.app.ExamEvent">
+    <void property="classroom">
+     <object idref="Classroom0"/>
     </void>
     <void property="documents">
      <object class="java.util.ArrayList">
@@ -110,7 +183,7 @@
        <object idref="Person0"/>
       </void>
       <void method="add">
-       <object class="edu.iut.app.Person" id="Person2">
+       <object class="edu.iut.app.Person" id="Person4">
         <void property="email">
          <string>cvbn</string>
         </void>
@@ -131,7 +204,7 @@
      </object>
     </void>
     <void property="student">
-     <object class="edu.iut.app.Person" id="Person3">
+     <object class="edu.iut.app.Person" id="Person5">
       <void property="email">
        <string>rtyui</string>
       </void>
@@ -151,88 +224,15 @@
     </void>
    </object>
   </void>
-  <void method="add">
-   <object class="edu.iut.app.ExamEvent">
-    <void property="examDate">
-     <object class="java.util.Date">
-      <long>1450951200000</long>
-     </object>
-    </void>
-    <void property="student">
-     <object class="edu.iut.app.Person" id="Person4">
-      <void property="email">
-       <string>fvghj</string>
-      </void>
-      <void property="firstname">
-       <string>Johan</string>
-      </void>
-      <void property="function">
-       <object idref="Person$PersonFunction1"/>
-      </void>
-      <void property="lastname">
-       <string>Gras</string>
-      </void>
-      <void property="phone">
-       <string>yu</string>
-      </void>
-     </object>
-    </void>
-   </object>
-  </void>
-  <void method="add">
-   <object class="edu.iut.app.ExamEvent">
-    <void property="classroom">
-     <object idref="Classroom1"/>
-    </void>
-    <void property="documents">
-     <object class="java.util.ArrayList">
-      <void method="add">
-       <object idref="Document0"/>
-      </void>
-     </object>
-    </void>
-    <void property="examDate">
-     <object class="java.util.Date">
-      <long>1450684800000</long>
-     </object>
-    </void>
-    <void property="jury">
-     <object class="java.util.ArrayList">
-      <void method="add">
-       <object idref="Person0"/>
-      </void>
-     </object>
-    </void>
-    <void property="student">
-     <object class="edu.iut.app.Person" id="Person5">
-      <void property="email">
-       <string>xavier.villelegier@u-psud.fr</string>
-      </void>
-      <void property="firstname">
-       <string>Xavier</string>
-      </void>
-      <void property="function">
-       <object idref="Person$PersonFunction1"/>
-      </void>
-      <void property="lastname">
-       <string>Villelégier</string>
-      </void>
-      <void property="phone">
-       <string>0611223344</string>
-      </void>
-     </object>
-    </void>
-   </object>
-  </void>
   <void property="classrooms">
    <void method="add">
     <object class="edu.iut.app.Classroom"/>
    </void>
    <void method="add">
-    <object idref="Classroom0"/>
+    <object idref="Classroom1"/>
    </void>
    <void method="add">
-    <object idref="Classroom1"/>
+    <object idref="Classroom0"/>
    </void>
   </void>
   <void property="documents">
@@ -248,21 +248,21 @@
     <object idref="Person0"/>
    </void>
    <void method="add">
-    <object idref="Person2"/>
+    <object idref="Person4"/>
    </void>
   </void>
   <void property="students">
    <void method="add">
-    <object idref="Person5"/>
-   </void>
-   <void method="add">
     <object idref="Person1"/>
    </void>
    <void method="add">
-    <object idref="Person3"/>
+    <object idref="Person2"/>
    </void>
    <void method="add">
-    <object idref="Person4"/>
+    <object idref="Person5"/>
+   </void>
+   <void method="add">
+    <object idref="Person3"/>
    </void>
   </void>
  </object>

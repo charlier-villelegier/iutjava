@@ -2,6 +2,7 @@ package edu.iut.tools;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Collections;
 import java.util.Locale;
 
 import edu.iut.app.Agenda;
@@ -54,6 +55,10 @@ public class IUTScheduler {
 		}
 		
 		System.err.println("Option:"+commandLineParser.getOption("config").getValue());
+		
+		//On trie les soutenances par date
+		Collections.sort(ApplicationSession.instance().getAgenda());
+		
 		SwingUtilities.invokeLater(new Runnable() {
 		    public void run() {
 		        SchedulerFrame mainFrame = new edu.iut.gui.frames.SchedulerFrame("IUT Scheduler");

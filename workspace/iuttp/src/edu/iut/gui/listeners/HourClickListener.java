@@ -3,6 +3,7 @@ package edu.iut.gui.listeners;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Cursor;
+import java.awt.Desktop;
 import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.Graphics2D;
@@ -22,6 +23,10 @@ import java.awt.event.MouseMotionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.net.URLEncoder;
 import java.util.Date;
 import java.util.LinkedList;
 
@@ -73,6 +78,20 @@ public class HourClickListener extends TransferHandler implements MouseListener,
 					@Override
 					public void actionPerformed(ActionEvent arg0) {
 						AddExamEventFrame dialog = new AddExamEventFrame(HourClickListener.this.date);
+					}			
+				});
+				
+				JMenuItem contact = new JMenuItem(ApplicationSession.instance().getString("contact"));
+				contact.addActionListener(new ActionListener() {
+
+					@Override
+					public void actionPerformed(ActionEvent arg0) {
+						try {
+							mailto(examDate.getFirst().getStudent().getEmail(), "Mail pour " + examDate.getFirst().getStudent().toString(),
+									"Cordialement");
+						} catch (IOException | URISyntaxException e1) {
+							e1.printStackTrace();
+						}
 					}			
 				});
 				
@@ -145,6 +164,8 @@ public class HourClickListener extends TransferHandler implements MouseListener,
 				menu.add(move);
 				menu.addSeparator();
 				menu.add(delete);
+				menu.addSeparator();
+				menu.add(contact);
 				
 				
 				menu.show(this.container, e.getX(), e.getY());
@@ -294,6 +315,26 @@ public class HourClickListener extends TransferHandler implements MouseListener,
 		 
 		    return new StringSelection(((JLabel)c).getText());
 		  }
+	 
+	//Prodédures et fonctions nécessaires pour envoyer le mail
+		public static void mailto(String recipients, String subject,
+		        String body) throws IOException, URISyntaxException {
+		    String uriStr = String.format("mailto:%s?subject=%s&body=%s",
+		            recipients,
+		            urlEncode(subject),
+		            urlEncode(body));
+		    Desktop.getDesktop().browse(new URI(uriStr));
+		}
+
+		private static final String urlEncode(String str) {
+		    try {
+		        return URLEncoder.encode(str, "UTF-8").replace("+", "%20");
+		    } catch (UnsupportedEncodingException e) {
+		        throw new RuntimeException(e);
+		    }
+		}
+
+
 	
 	
 

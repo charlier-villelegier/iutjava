@@ -4,7 +4,16 @@ import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.Set;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
@@ -16,12 +25,13 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import edu.iut.app.ApplicationSession;
+import edu.iut.app.ExamEvent;
 import edu.iut.app.Person;
 import edu.iut.app.Person.PersonFunction;
 import edu.iut.gui.widget.agenda.AgendaPanelFactory.ActiveView;
 
 /**
- * <b>AddPersonDialog est la classe graphique permettant l'ajout d'une personne (juri ou étudiant) via le planing.</b>
+ * <b>AddPersonDialog est la classe graphique permettant l'ajout d'une personne (juri ou ï¿½tudiant) via le planing.</b>
  */
 public class AddPersonDialog extends JDialog{
 	
@@ -42,17 +52,63 @@ public class AddPersonDialog extends JDialog{
 		this.setLayout(new BorderLayout());
 		
 		JPanel panel = new JPanel(new GridLayout(4,2));
+		final JTextField email = new JTextField("@u-psud.fr");
+		final JTextField lastname = new JTextField();
 		
 		panel.add(new JLabel(ApplicationSession.instance().getString("firstname")+" : " ));
 		final JTextField firstname = new JTextField();
+		firstname.addKeyListener(new KeyListener() {
+
+			@Override
+			public void keyTyped(KeyEvent e) {
+				
+				
+			}
+
+			@Override
+			public void keyPressed(KeyEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void keyReleased(KeyEvent e) {
+				
+				email.setText(firstname.getText().toLowerCase() + "." + lastname.getText().toLowerCase()+"@u-psud.fr");
+				
+			}
+	         
+	       });
+		
+		
 		panel.add(firstname);
 		
 		panel.add(new JLabel(ApplicationSession.instance().getString("lastname")+" : " ));
-		final JTextField lastname = new JTextField();
+		lastname.addKeyListener(new KeyListener() {
+
+			@Override
+			public void keyTyped(KeyEvent e) {
+				
+				
+			}
+
+			@Override
+			public void keyPressed(KeyEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void keyReleased(KeyEvent e) {
+				
+				email.setText(firstname.getText().toLowerCase() + "." + lastname.getText().toLowerCase()+"@u-psud.fr");
+				
+			}
+	         
+	       });
 		panel.add(lastname);
 		
 		panel.add(new JLabel("Email : "));
-		final JTextField email = new JTextField();
 		panel.add(email);
 		
 		panel.add(new JLabel(ApplicationSession.instance().getString("phone")+" : " ));
